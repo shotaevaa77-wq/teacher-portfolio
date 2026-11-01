@@ -37,7 +37,25 @@ const supabaseClient = supabase.createClient(
   SUPABASE_KEY
 );
 </script><body>
-<div class="app">
+<div id="authScreen" style="position:fixed;inset:0;background:#f7f7fb;z-index:9999;display:flex;align-items:center;justify-content:center;">
+  <div style="width:380px;background:white;padding:30px;border-radius:20px;box-shadow:0 15px 50px rgba(0,0,0,.12);">
+    <h2 style="margin-top:0;">Мұғалім кабинеті</h2>
+    <p style="color:#777;">Цифрлық портфолиоға кіру</p>
+
+    <input id="authEmail" type="email" placeholder="Email"
+      style="width:100%;padding:13px;margin:8px 0;border:1px solid #ddd;border-radius:10px;box-sizing:border-box;">
+
+    <input id="authPassword" type="password" placeholder="Құпия сөз"
+      style="width:100%;padding:13px;margin:8px 0;border:1px solid #ddd;border-radius:10px;box-sizing:border-box;">
+
+    <button id="loginBtn"
+      style="width:100%;padding:13px;margin-top:10px;background:#6656c9;color:white;border:0;border-radius:10px;font-weight:700;cursor:pointer;">
+      Кіру
+    </button>
+
+    <div id="authMessage" style="margin-top:12px;color:#777;font-size:14px;"></div>
+  </div>
+</div>
 <aside class="sidebar" id="sidebar">
   <div class="logo">TEACHER PORTFOLIO<span>Цифрлық кәсіби кабинет</span></div>
   <nav class="nav">
@@ -179,16 +197,94 @@ document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showPage(b.dat
 });
 
 function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open')}
-function saveProfile(){
- const ids=['fullName','profession','subject','school','city','experienceYears','bio','quote','email','phone','instagram','telegram'];
- const data={};
- ids.forEach(id=>{
-   const el=document.getElementById(id);
-   if(el) data[id]=el.value.trim();
- });
- localStorage.setItem('teacherPortfolio',JSON.stringify(data));
- updatePublic();
- toast('Профиль сақталды ✓');
+async function saveProfile(){
+ const data = {
+    full_name: document.getElementById('fullName')?.value.trim() || '',
+    profession: document.getElementById('profession')?.value.trim() || '',
+    subject: document.getElementById('subject')?.value.trim() || '',
+    organization: document.getElementById('school')?.value.trim() || '',
+    city: document.getElementById('city')?.value.trim() || '',
+    experience_years: parseInt(document.getElementById('experienceYears')?.value) || 0,
+    about: document.getElementById('bio')?.value.trim() || '',
+    quote: document.getElementById('quote')?.value.trim() || '',
+    email: document.getElementById('email')?.value.trim() || '',
+    phone: document.getElementById('phone')?.value.trim() || '',
+    avatar_url: ''
+  };
+
+  const { data: userData, error: userError } =
+    await supabaseClient.auth.getUser();
+
+  if (userError || !userData.user) {
+    toast('Алдымен жүйеге кіріңіз');
+    return;
+  }
+
+  const userId = userData.user.id;
+
+  const { error } = await supabaseClient
+    .from('profiles')
+    .upsert({
+      id: userId,
+      ...data,
+      updated_at: new Date().toISOString()
+    });
+
+  if (error) {
+    console.error(error);
+    toast('Қате: ' + error.message);
+    return;
+  }
+
+  toast('Профиль Supabase-ке сақталды ✓');
+}
+    const data = {};
+
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if(el) data[id] = el.value.trim();
+  });
+
+  const { data: authData, error: authError } =
+    await supabaseClient.auth.getUser();
+
+  if(authError || !authData.user){
+    toast('Алдымен жүйеге кіріңіз');
+    return;
+  }
+
+  const user = authData.user;
+
+  const { error } = await supabaseClient
+    .from('profiles')
+    .upsert({
+      id: user.id,
+      full_name: data.fullName || '',
+      profession: data.profession || '',
+      subject: data.subject || '',
+      organization: data.school || '',
+      city: data.city || '',
+      experience_years: data.experienceYears || '',
+      bio: data.bio || '',
+      quote: data.quote || '',
+      email: data.email || user.email || '',
+      phone: data.phone || '',
+      instagram: data.instagram || ''
+    });
+
+  if(error){
+    console.error(error);
+    toast('Қате: профиль сақталмады');
+    return;
+  }
+
+  localStorage.setItem(
+    'teacherPortfolio',
+    JSON.stringify(data)
+  );
+
+  updatePublic();
+  toast('Профиль Supabase-ке сақталды ✓');
 }
 function updatePublic(){
  const name=document.getElementById('fullName').value.trim() || 'Мұғалім';

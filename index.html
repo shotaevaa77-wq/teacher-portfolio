@@ -4,886 +4,2799 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Teacher Portfolio — Мұғалімнің цифрлық портфолиосы</title>
+
 <style>
-:root{--purple:#6656c9;--purple2:#8a7be2;--lav:#f3f0ff;--ink:#24233a;--muted:#77758a;--line:#eceaf4;--bg:#f7f7fb;--white:#fff;--green:#40b98b;--pink:#f5dff0}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink)}
-button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}
-.app{display:flex;min-height:100vh}.sidebar{width:248px;background:linear-gradient(180deg,#5e51b8,#7668d0);color:#fff;padding:22px 16px;position:fixed;inset:0 auto 0 0;z-index:5}
-.logo{font-size:20px;font-weight:800;padding:10px 12px 22px;letter-spacing:.2px}.logo span{display:block;font-size:11px;font-weight:500;opacity:.72;margin-top:5px}
-.nav{display:grid;gap:5px}.nav button{background:transparent;color:#fff;text-align:left;padding:12px 13px;border-radius:12px;font-size:14px;opacity:.88}.nav button:hover,.nav button.active{background:rgba(255,255,255,.16);opacity:1}
-.side-bottom{position:absolute;bottom:20px;left:16px;right:16px}.public-mini{background:rgba(255,255,255,.12);padding:14px;border-radius:16px}.public-mini small{opacity:.7}.public-mini strong{display:block;margin:5px 0 10px}.white-btn{background:#fff;color:#5c50b8;padding:9px 12px;border-radius:10px;font-weight:700;font-size:12px;width:100%}
-.main{margin-left:248px;width:calc(100% - 248px);padding:24px 28px}.topbar{height:54px;background:#fff;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;margin-bottom:22px}.search{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13px}.search input{border:0;outline:0;width:240px}.top-actions{display:flex;gap:9px;align-items:center}.icon{width:36px;height:36px;border:1px solid var(--line);border-radius:11px;background:#fff}
-.page{display:none}.page.active{display:block}.title-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}.title-row h1{margin:0;font-size:26px}.title-row p{margin:6px 0 0;color:var(--muted);font-size:13px}
-.btn{background:var(--purple);color:#fff;border-radius:11px;padding:11px 15px;font-weight:700;font-size:13px}.btn.secondary{background:#fff;color:var(--purple);border:1px solid #dedaf1}.btn.green{background:var(--green)}
-.grid{display:grid;gap:16px}.stats{grid-template-columns:repeat(4,1fr)}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}.stat{display:flex;justify-content:space-between;align-items:center}.stat small{color:var(--muted)}.stat b{display:block;font-size:26px;margin-top:8px}.stat .ico{width:42px;height:42px;background:var(--lav);border-radius:13px;display:grid;place-items:center}
-.dashboard-grid{grid-template-columns:1.5fr .8fr;margin-top:16px}.profile-card{display:flex;gap:18px;align-items:center}.avatar{width:84px;height:84px;border-radius:50%;object-fit:cover;background:linear-gradient(135deg,#ddd7ff,#f8e4f2);display:grid;place-items:center;font-size:28px;font-weight:800;color:#6656c9}.profile-card h2{margin:0 0 5px;font-size:19px}.muted{color:var(--muted);font-size:13px}.progress{height:9px;background:#eeeaf8;border-radius:99px;overflow:hidden;margin:10px 0}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--purple),#a093ee);width:72%}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.section-head h3{margin:0;font-size:16px}.section-head button{background:none;color:var(--purple);font-weight:700;font-size:12px}
-.materials{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.material{border:1px solid var(--line);border-radius:14px;padding:13px;display:flex;gap:12px;align-items:center}.fileico{width:42px;height:42px;border-radius:12px;background:#f4edff;display:grid;place-items:center;color:var(--purple);font-weight:800;font-size:11px}.material strong{font-size:13px;display:block}.material small{color:var(--muted);display:block;margin-top:4px}
-.list{display:grid;gap:10px}.row{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);padding:13px;border-radius:14px;background:#fff}.row-left{display:flex;gap:12px;align-items:center}.badge{font-size:10px;background:#e5f7ef;color:#16855e;padding:5px 8px;border-radius:999px;font-weight:700}
-.form{max-width:800px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:700}.field input,.field textarea,.field select{border:1px solid var(--line);border-radius:11px;padding:11px 12px;outline:0;background:#fff}.field textarea{min-height:110px;resize:vertical}
-.portfolio{max-width:1100px;margin:auto}.portfolio-hero{background:linear-gradient(135deg,#f1eeff,#fff);border:1px solid var(--line);border-radius:24px;padding:32px;display:flex;justify-content:space-between;gap:30px;align-items:center}.portfolio-hero h1{font-size:36px;margin:5px 0}.portfolio-hero p{color:var(--muted);max-width:620px;line-height:1.6}.hero-actions{display:flex;gap:10px;margin-top:18px}.public-photo{width:150px;height:150px;border-radius:30px;background:linear-gradient(135deg,#d9d2ff,#f4ddea);display:grid;place-items:center;font-size:52px;color:#6758c8;font-weight:800}.portfolio-section{margin-top:18px}.portfolio-section h2{font-size:20px}.achievement-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.achievement{background:#fff;border:1px solid var(--line);padding:18px;border-radius:18px}.achievement b{display:block;margin-bottom:7px}.footer{margin-top:25px;text-align:center;color:var(--muted);font-size:12px}
-.modal{position:fixed;inset:0;background:rgba(25,22,45,.45);display:none;align-items:center;justify-content:center;z-index:20;padding:20px}.modal.show{display:flex}.modal-box{background:#fff;border-radius:20px;padding:24px;width:min(500px,100%)}.modal-box h2{margin-top:0}.close{float:right;background:#f2f0f7;border-radius:9px;width:32px;height:32px}
-.toast{position:fixed;right:22px;bottom:22px;background:#24233a;color:#fff;padding:12px 16px;border-radius:12px;display:none;z-index:30;font-size:13px}
-.mobile-menu{display:none}
-@media(max-width:1000px){.stats{grid-template-columns:1fr 1fr}.dashboard-grid{grid-template-columns:1fr}.sidebar{width:220px}.main{margin-left:220px;width:calc(100% - 220px)}}
-@media(max-width:700px){.sidebar{transform:translateX(-100%);transition:.25s;width:250px}.sidebar.open{transform:translateX(0)}.main{margin-left:0;width:100%;padding:14px}.mobile-menu{display:block}.topbar{padding:0 10px}.search input{width:120px}.stats{grid-template-columns:1fr 1fr}.materials,.form-grid,.achievement-grid{grid-template-columns:1fr}.portfolio-hero{padding:22px;flex-direction:column-reverse;align-items:flex-start}.portfolio-hero h1{font-size:28px}.public-photo{width:110px;height:110px;border-radius:24px}.title-row{gap:10px}.title-row .btn{white-space:nowrap}}
-/* ===== additions: view switching, auth, actions, states ===== */
-#authScreen,#publicView{display:none}
-body:not([data-view]) .app{display:none}
-body[data-view=auth] .app,body[data-view=public] .app{display:none}
-body[data-view=auth] #authScreen{display:flex}
-body[data-view=public] #publicView{display:block}
-#authScreen{min-height:100vh;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#f1eeff,#fff)}
-.auth-card{width:min(420px,100%);padding:26px}
-.auth-switch{background:none;color:var(--purple);font-weight:700;font-size:13px;margin-top:14px;width:100%;padding:6px}
-#boot{position:fixed;inset:0;display:grid;place-items:center;color:var(--muted);background:var(--bg);z-index:50}
-body[data-view] #boot{display:none}
-#publicView{padding:24px 20px 40px}
-.form-msg{color:#b3261e;font-size:12px;min-height:18px;margin:8px 0}
-.form-msg.ok{color:#16855e}
-.btn:disabled{opacity:.6;cursor:wait}
-.hint{font-size:11px;color:var(--muted)}
-.row{gap:12px}
-.row-main{min-width:0}.row-main strong{overflow-wrap:anywhere}
-.row-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.mini{background:#f4f2fb;color:var(--purple);border-radius:9px;padding:6px 10px;font-size:12px;font-weight:700}
-.mini.danger{background:#fdecea;color:#b3261e}
-.material{align-items:flex-start}.material .row-actions{margin-top:8px}
-.empty{padding:22px;text-align:center;color:var(--muted);font-size:13px;border:1px dashed #dedaf1;border-radius:14px;background:#fff;grid-column:1/-1}
-.toast.err{background:#b3261e}
-.modal-box{max-height:92vh;overflow:auto}
-.stack{display:grid;gap:12px}
-.avatar-edit{grid-column:1/-1;display:flex;gap:16px;align-items:center}
-.avatar-edit .field{flex:1}
-.avatar-edit .avatar{flex:none;overflow:hidden}
-.avatar-edit .avatar img,.public-photo img{width:100%;height:100%;object-fit:cover}
-.public-photo{overflow:hidden;flex:none}
-.note{background:#fff8e6;border:1px solid #f3e1a8;color:#7a5b00;border-radius:14px;padding:12px 14px;font-size:13px;margin-bottom:14px}
-.qrbox{display:grid;place-items:center;padding:14px}
-.social{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;font-size:13px}.social a{color:var(--purple);font-weight:700}
-.meta-line{color:var(--muted);font-size:14px;margin:0}
-@media(max-width:700px){.row{flex-wrap:wrap}.row-actions{width:100%}.avatar-edit{flex-direction:column;align-items:flex-start}.avatar-edit .field{width:100%}.hero-actions{flex-wrap:wrap}.title-row{flex-wrap:wrap}}
+:root{
+  --purple:#6656c9;
+  --purple2:#8a7be2;
+  --lav:#f3f0ff;
+  --ink:#24233a;
+  --muted:#77758a;
+  --line:#eceaf4;
+  --bg:#f7f7fb;
+  --white:#fff;
+  --green:#40b98b;
+  --pink:#f5dff0;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  margin:0;
+  min-height:100%;
+  font-family:Inter,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+  border:0;
+}
+
+.app{
+  display:flex;
+  min-height:100vh;
+}
+
+.sidebar{
+  width:248px;
+  background:linear-gradient(180deg,#5e51b8,#7668d0);
+  color:#fff;
+  padding:22px 16px;
+  position:fixed;
+  inset:0 auto 0 0;
+  z-index:20;
+}
+
+.logo{
+  font-size:20px;
+  font-weight:800;
+  padding:10px 12px 22px;
+  letter-spacing:.2px;
+}
+
+.logo span{
+  display:block;
+  font-size:11px;
+  font-weight:500;
+  opacity:.72;
+  margin-top:5px;
+}
+
+.nav{
+  display:grid;
+  gap:5px;
+}
+
+.nav button{
+  background:transparent;
+  color:#fff;
+  text-align:left;
+  padding:12px 13px;
+  border-radius:12px;
+  font-size:14px;
+  opacity:.88;
+}
+
+.nav button:hover,
+.nav button.active{
+  background:rgba(255,255,255,.14);
+  opacity:1;
+}
+
+.nav-bottom{
+  position:absolute;
+  bottom:20px;
+  left:16px;
+  right:16px;
+}
+
+.public-mini{
+  background:rgba(255,255,255,.12);
+  padding:14px;
+  border-radius:16px;
+}
+
+.public-mini small{
+  opacity:.7;
+}
+
+.main{
+  margin-left:248px;
+  width:calc(100% - 248px);
+  padding:24px 28px;
+}
+
+.topbar{
+  height:54px;
+  background:#fff;
+  border:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  border-radius:16px;
+  margin-bottom:20px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.title-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:20px;
+}
+
+.title-row h1{
+  margin:0;
+  font-size:28px;
+}
+
+.btn{
+  background:var(--purple);
+  color:#fff;
+  border-radius:11px;
+  padding:11px 15px;
+  font-weight:700;
+  font-size:13px;
+}
+
+.btn.secondary{
+  background:#fff;
+  color:var(--purple);
+  border:1px solid #ddd8f4;
+}
+
+.btn.green{
+  background:var(--green);
+}
+
+.grid{
+  display:grid;
+  gap:16px;
+}
+
+.stats{
+  grid-template-columns:repeat(4,1fr);
+}
+
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+}
+
+.stat{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.stat small{
+  display:block;
+  color:var(--muted);
+  margin-bottom:7px;
+}
+
+.stat b{
+  font-size:25px;
+}
+
+.ico{
+  font-size:25px;
+}
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:1.5fr .8fr;
+  gap:18px;
+  margin-top:16px;
+}
+
+.profile-card{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+.avatar{
+  width:84px;
+  height:84px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#eeeafa;
+  display:grid;
+  place-items:center;
+  color:var(--purple);
+  font-weight:800;
+  font-size:24px;
+  overflow:hidden;
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.field{
+  display:grid;
+  gap:6px;
+}
+
+.field label{
+  font-size:13px;
+  font-weight:700;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid #dedbea;
+  border-radius:11px;
+  outline:none;
+  background:#fff;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  border-color:var(--purple2);
+  box-shadow:0 0 0 3px rgba(138,123,226,.12);
+}
+
+.field textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.form-grid .full{
+  grid-column:1/-1;
+}
+
+.list{
+  display:grid;
+  gap:10px;
+}
+
+.row{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:13px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.row-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.fileico{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:var(--lav);
+  display:grid;
+  place-items:center;
+}
+
+.badge{
+  display:inline-flex;
+  padding:5px 9px;
+  border-radius:999px;
+  background:var(--lav);
+  color:var(--purple);
+  font-size:11px;
+  font-weight:700;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.empty{
+  padding:22px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  border:1px dashed #dedaf1;
+  border-radius:14px;
+  background:#fff;
+}
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#24233a;
+  color:#fff;
+  padding:13px 16px;
+  border-radius:12px;
+  z-index:100;
+}
+
+.toast.err{
+  background:#b3261e;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(30,28,48,.45);
+  z-index:90;
+  place-items:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:grid;
+}
+
+.modal-box{
+  width:min(700px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+}
+
+.stack{
+  display:grid;
+  gap:12px;
+}
+
+.auth-screen{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#f7f5ff,#fff);
+  display:grid;
+  place-items:center;
+  padding:20px;
+  z-index:200;
+}
+
+.auth-card{
+  width:min(420px,100%);
+}
+
+.auth-card .logo{
+  color:var(--purple);
+  padding:0 0 14px;
+}
+
+.auth-card h2{
+  margin:0 0 4px;
+}
+
+.auth-card .field{
+  margin-top:12px;
+}
+
+.auth-switch{
+  margin-top:14px;
+  background:transparent;
+  color:var(--purple);
+  font-weight:700;
+  font-size:13px;
+  width:100%;
+}
+
+.auth-message{
+  min-height:20px;
+  margin-top:10px;
+  color:#b3261e;
+  font-size:13px;
+}
+
+.boot{
+  position:fixed;
+  inset:0;
+  background:#fff;
+  display:grid;
+  place-items:center;
+  z-index:300;
+  color:var(--purple);
+  font-weight:700;
+}
+
+.portfolio{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:20px;
+}
+
+.portfolio-hero{
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  padding:26px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#f4f0ff,#fff);
+}
+
+.portfolio-hero h1{
+  margin:12px 0 6px;
+}
+
+.public-photo{
+  width:150px;
+  height:150px;
+  border-radius:22px;
+  background:var(--lav);
+  color:var(--purple);
+  display:grid;
+  place-items:center;
+  font-size:38px;
+  font-weight:800;
+  overflow:hidden;
+}
+
+.public-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.hero-actions{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+}
+
+.portfolio-section{
+  margin-top:20px;
+}
+
+.portfolio-section h2{
+  margin:0 0 12px;
+}
+
+.achievement-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.achievement{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  background:#fff;
+}
+
+.achievement b{
+  display:block;
+  margin-bottom:6px;
+}
+
+.note{
+  background:#fff8e6;
+  border:1px solid #f3e1a8;
+  color:#7a5b00;
+  border-radius:14px;
+  padding:12px 14px;
+  font-size:13px;
+  margin-bottom:14px;
+}
+
+.social{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+
+.social a{
+  color:var(--purple);
+  font-weight:700;
+}
+
+.meta-line{
+  color:var(--muted);
+  font-size:14px;
+  margin:0;
+}
+
+@media(max-width:900px){
+  .sidebar{
+    width:210px;
+  }
+
+  .main{
+    margin-left:210px;
+    width:calc(100% - 210px);
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .dashboard-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:700px){
+  .sidebar{
+    display:none;
+  }
+
+  .main{
+    margin-left:0;
+    width:100%;
+    padding:14px;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-grid .full{
+    grid-column:auto;
+  }
+
+  .portfolio-hero{
+    flex-direction:column;
+  }
+
+  .achievement-grid{
+    grid-template-columns:1fr;
+  }
+
+  .title-row{
+    flex-wrap:wrap;
+    gap:12px;
+  }
+}
 </style>
 </head>
-<body>
-<div id="boot">Жүктелуде...</div>
 
-<!-- ============ AUTH ============ -->
-<div id="authScreen">
+<body>
+
+<div id="boot" class="boot">Жүктелуде...</div>
+
+<div id="authScreen" class="auth-screen">
   <div class="card auth-card">
-    <div class="logo" style="color:var(--purple);padding:0 0 14px">TEACHER PORTFOLIO<span style="color:var(--muted)">Мұғалім кабинеті</span></div>
-    <h2 id="authTitle" style="margin:0 0 4px">Цифрлық портфолиоға кіру</h2>
-    <p class="muted" id="authSub" style="margin:0 0 16px">Email және құпиясөзді енгізіңіз.</p>
-    <div class="field"><label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email" placeholder="name@example.com"></div>
-    <div class="field" style="margin-top:12px"><label for="authPassword">Құпиясөз</label><input id="authPassword" type="password" autocomplete="current-password" placeholder="Кемінде 6 таңба"></div>
-    <div class="field" id="authPassword2Wrap" style="margin-top:12px;display:none"><label for="authPassword2">Құпиясөзді қайталаңыз</label><input id="authPassword2" type="password" autocomplete="new-password"></div>
-    <div id="authMessage" class="form-msg" role="alert" aria-live="polite"></div>
-    <button class="btn" id="loginBtn" type="button" style="width:100%">Кіру</button>
-    <button class="btn" id="registerBtn" type="button" style="width:100%;display:none">Тіркелу</button>
-    <button class="auth-switch" id="authSwitch" type="button">Аккаунтыңыз жоқ па? Тіркелу</button>
+
+    <div class="logo">
+      TEACHER PORTFOLIO
+      <span>Мұғалім кабинеті</span>
+    </div>
+
+    <h2 id="authTitle">Цифрлық портфолиоға кіру</h2>
+
+    <p class="muted" id="authSub">
+      Email және құпиясөзді енгізіңіз.
+    </p>
+
+    <div class="field">
+      <label for="authEmail">Email</label>
+      <input
+        id="authEmail"
+        type="email"
+        autocomplete="email"
+        placeholder="name@example.com"
+      >
+    </div>
+
+    <div class="field">
+      <label for="authPassword">Құпиясөз</label>
+      <input
+        id="authPassword"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Кемінде 6 таңба"
+      >
+    </div>
+
+    <div class="field" id="authPassword2Wrap" style="display:none">
+      <label for="authPassword2">Құпиясөзді қайталаңыз</label>
+      <input
+        id="authPassword2"
+        type="password"
+        autocomplete="new-password"
+      >
+    </div>
+
+    <div id="authMessage" class="auth-message"></div>
+
+    <button
+      class="btn"
+      id="loginBtn"
+      type="button"
+      style="width:100%;margin-top:12px"
+    >
+      Кіру
+    </button>
+
+    <button
+      class="btn"
+      id="registerBtn"
+      type="button"
+      style="width:100%;margin-top:12px;display:none"
+    >
+      Тіркелу
+    </button>
+
+    <button
+      type="button"
+      id="forgotPasswordBtn"
+      class="auth-switch"
+    >
+      Құпиясөзді ұмыттыңыз ба?
+    </button>
+
+    <button
+      type="button"
+      id="authSwitch"
+      class="auth-switch"
+    >
+      Аккаунтыңыз жоқ па? Тіркелу
+    </button>
+
   </div>
 </div>
 
-<!-- ============ APP ============ -->
-<div class="app">
-<aside class="sidebar" id="sidebar">
-  <div class="logo">TEACHER PORTFOLIO<span>Цифрлық кәсіби кабинет</span></div>
-  <nav class="nav" id="nav">
-    <button class="active" data-page="dashboard">🏠 Dashboard</button>
-    <button data-page="profile">👤 Менің профилім</button>
-    <button data-page="achievements">🏆 Жетістіктерім</button>
-    <button data-page="certificates">📜 Сертификаттар</button>
-    <button data-page="materials">📚 Оқу материалдары</button>
-    <button data-page="projects">✍️ Авторлық жұмыстар</button>
-    <button data-page="students">🎓 Оқушылар жетістігі</button>
-    <button data-page="experience">💼 Еңбек жолым</button>
-    <button data-page="education">🎓 Білімім</button>
-    <button data-page="portfolio">🌐 Менің портфолиом</button>
-    <button data-page="settings">⚙️ Баптаулар</button>
-  </nav>
-  <div class="side-bottom">
-    <div class="public-mini">
-      <small>Портфолио мәртебесі</small><strong id="publishStatus">⚪ Жарияланбаған</strong>
-      <button class="white-btn" data-page="portfolio">Портфолионы көру</button>
-    </div>
-  </div>
-</aside>
+<div id="app" class="app" style="display:none">
 
-<main class="main">
-  <div class="topbar">
-    <div class="search"><button class="icon mobile-menu" data-act="menu" aria-label="Мәзір">☰</button> 🔎 <input placeholder="Осы бөлімнен іздеу..." id="searchInput"></div>
-    <div class="top-actions"><button class="icon" data-act="notify" aria-label="Хабарламалар">🔔</button><button class="icon" data-act="account" aria-label="Аккаунт">👤</button></div>
-  </div>
+  <aside class="sidebar">
 
-  <section class="page active" id="dashboard">
-    <div class="title-row"><div><h1>Сәлем, <span id="dashboardName">Мұғалім</span>! 👋</h1><p>Цифрлық портфолиоңызды басқару орталығы.</p></div><button class="btn" data-page="portfolio">Портфолионы көру</button></div>
-    <div class="grid stats">
-      <div class="card stat"><div><small>Жетістіктер</small><b id="statAch">0</b></div><div class="ico">🏆</div></div>
-      <div class="card stat"><div><small>Сертификаттар</small><b id="statCert">0</b></div><div class="ico">📜</div></div>
-      <div class="card stat"><div><small>Материалдар</small><b id="statMat">0</b></div><div class="ico">📚</div></div>
-      <div class="card stat"><div><small>Тәжірибе</small><b id="statExp">0 жыл</b></div><div class="ico">💼</div></div>
+    <div class="logo">
+      TEACHER PORTFOLIO
+      <span>Цифрлық кәсіби кабинет</span>
     </div>
-    <div class="grid dashboard-grid">
+
+    <nav class="nav">
+
+      <button class="active" data-page="dashboard">
+        🏠 Басты бет
+      </button>
+
+      <button data-page="profile">
+        👤 Профиль
+      </button>
+
+      <button data-page="achievements">
+        🏆 Жетістіктер
+      </button>
+
+      <button data-page="certificates">
+        📜 Сертификаттар
+      </button>
+
+      <button data-page="materials">
+        📚 Материалдар
+      </button>
+
+      <button data-page="education">
+        🎓 Білім
+      </button>
+
+      <button data-page="experience">
+        💼 Еңбек жолы
+      </button>
+
+      <button data-page="students">
+        👨‍🎓 Оқушылар жетістігі
+      </button>
+
+      <button data-page="works">
+        ✍️ Авторлық жұмыстар
+      </button>
+
+      <button data-page="portfolio">
+        🌐 Менің портфолиом
+      </button>
+
+    </nav>
+
+    <div class="nav-bottom">
+      <div class="public-mini">
+        <small>Аккаунт</small>
+        <div id="sidebarUser" style="font-weight:700;margin-top:5px">
+          —
+        </div>
+
+        <button
+          id="logoutBtn"
+          class="btn"
+          style="width:100%;margin-top:12px;background:rgba(255,255,255,.18)"
+        >
+          Шығу
+        </button>
+      </div>
+    </div>
+
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <strong id="pageTitle">Басты бет</strong>
+
+      <div>
+        <button class="btn secondary" id="openPublicBtn">
+          🌐 Портфолионы көру
+        </button>
+      </div>
+    </div>
+
+    <section class="page active" id="dashboard">
+
+      <div class="title-row">
+        <div>
+          <h1>Қош келдіңіз!</h1>
+          <p class="muted">
+            Мұғалімнің кәсіби цифрлық портфолиосын басқару.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid stats">
+
+        <div class="card stat">
+          <div>
+            <small>Жетістіктер</small>
+            <b id="statAchievements">0</b>
+          </div>
+          <div class="ico">🏆</div>
+        </div>
+
+        <div class="card stat">
+          <div>
+            <small>Сертификаттар</small>
+            <b id="statCertificates">0</b>
+          </div>
+          <div class="ico">📜</div>
+        </div>
+
+        <div class="card stat">
+          <div>
+            <small>Материалдар</small>
+            <b id="statMaterials">0</b>
+          </div>
+          <div class="ico">📚</div>
+        </div>
+
+        <div class="card stat">
+          <div>
+            <small>Тәжірибе</small>
+            <b id="statExperience">0</b>
+          </div>
+          <div class="ico">💼</div>
+        </div>
+
+      </div>
+
+      <div class="dashboard-grid">
+
+        <div class="card">
+          <h2 style="margin-top:0">Профиль</h2>
+
+          <div class="profile-card">
+
+            <div class="avatar" id="dashboardAvatar">
+              —
+            </div>
+
+            <div>
+              <h2 id="dashboardName" style="margin:0">
+                Мұғалім
+              </h2>
+
+              <p id="dashboardProfession" class="muted">
+                Профиль толтырылмаған
+              </p>
+
+              <button
+                class="btn"
+                data-page-link="profile"
+              >
+                Профильді толтыру
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card">
+
+          <h2 style="margin-top:0">
+            Портфолио статусы
+          </h2>
+
+          <div id="publishStatus" class="empty">
+            Жарияланбаған
+          </div>
+
+          <button
+            id="dashboardPublishBtn"
+            class="btn green"
+            style="width:100%;margin-top:12px"
+          >
+            Жариялау
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="page" id="profile">
+
+      <div class="title-row">
+        <div>
+          <h1>👤 Профиль</h1>
+          <p class="muted">
+            Кәсіби мәліметтеріңізді толтырыңыз.
+          </p>
+        </div>
+
+        <button class="btn" id="saveProfileBtn">
+          Сақтау
+        </button>
+      </div>
+
       <div class="card">
-        <div class="section-head"><h3>Соңғы материалдар</h3><button data-page="materials">Барлығын көру →</button></div>
-        <div class="materials" id="recentMaterials"></div>
+
+        <div class="form-grid">
+
+          <div class="field">
+            <label>Толық аты-жөні</label>
+            <input id="fullName" placeholder="Аты-жөніңіз">
+          </div>
+
+          <div class="field">
+            <label>Мамандығы</label>
+            <input id="profession" placeholder="Мысалы: Педагог">
+          </div>
+
+          <div class="field">
+            <label>Пәні</label>
+            <input id="subject" placeholder="Мысалы: Қазақ тілі">
+          </div>
+
+          <div class="field">
+            <label>Мекеме</label>
+            <input id="organization" placeholder="Мектеп атауы">
+          </div>
+
+          <div class="field">
+            <label>Қала / аудан</label>
+            <input id="city" placeholder="Қала">
+          </div>
+
+          <div class="field">
+            <label>Жұмыс өтілі</label>
+            <input id="experienceYears" type="number" min="0" placeholder="5">
+          </div>
+
+          <div class="field full">
+            <label>Өзіңіз туралы</label>
+            <textarea id="about" placeholder="Кәсіби тәжірибеңіз туралы..."></textarea>
+          </div>
+
+          <div class="field full">
+            <label>Кәсіби ұстаным</label>
+            <textarea id="professionalMotto" placeholder="Сіздің кәсіби ұстанымыңыз..."></textarea>
+          </div>
+
+          <div class="field">
+            <label>Instagram</label>
+            <input id="instagram" placeholder="https://instagram.com/...">
+          </div>
+
+          <div class="field">
+            <label>Telegram</label>
+            <input id="telegram" placeholder="https://t.me/...">
+          </div>
+
+          <div class="field">
+            <label>Портфолио slug</label>
+            <input id="slug" placeholder="nazereke">
+          </div>
+
+          <div class="field">
+            <label>Дәйексөз</label>
+            <input id="quote" placeholder="Кәсіби цитата">
+          </div>
+
+        </div>
+
       </div>
-      <div class="card">
-        <div class="section-head"><h3>Портфолио дайындығы</h3></div>
-        <div style="font-size:28px;font-weight:800" id="completionPct">0%</div><div class="progress"><i id="completionBar" style="width:0%"></i></div><p class="muted" id="completionText">Профиль мен бөлімдерді толтырыңыз.</p>
-        <button class="btn" data-page="profile">Профильді толықтыру</button>
+
+    </section>
+
+    <section class="page" id="achievements">
+
+      <div class="title-row">
+        <div>
+          <h1>🏆 Жетістіктер</h1>
+          <p class="muted">
+            Кәсіби жетістіктеріңізді қосыңыз.
+          </p>
+        </div>
+
+        <button
+          class="btn"
+          data-add="achievements"
+        >
+          + Қосу
+        </button>
       </div>
+
+      <div id="achievementsList" class="list"></div>
+
+    </section>
+
+    <section class="page" id="certificates">
+
+      <div class="title-row">
+        <div>
+          <h1>📜 Сертификаттар</h1>
+          <p class="muted">
+            Сертификаттарыңызды сақтаңыз.
+          </p>
+        </div>
+
+        <button
+          class="btn"
+          data-add="certificates"
+        >
+          + Қосу
+        </button>
+      </div>
+
+      <div id="certificatesList" class="list"></div>
+
+    </section>
+
+    <section class="page" id="materials">
+
+      <div class="title-row">
+        <div>
+          <h1>📚 Оқу материалдары</h1>
+          <p class="muted">
+            Сабақ материалдары мен ресурстар.
+          </p>
+        </div>
+
+        <button
+          class="btn"
+          data-add="materials"
+        >
+          + Қосу
+        </button>
+      </div>
+
+      <div id="materialsList" class="list"></div>
+
+    </section>
+
+    <section class="page" id="education">
+
+      <div class="title-row">
+        <div>
+          <h1>🎓 Білім</h1>
+          <p class="muted">
+            Біліміңіз туралы ақпарат.
+          </p>
+        </div>
+
+        <button
+          class="btn"
+          data-add="education"
+        >
+          + Қосу
+        </button>
+      </div>
+
+      <div id="educationList" class="list"></div>
+
+    </section>
+
+    <section class="page" id="experience">
+
+      <div class="title-row">
+        <div>
+          <h1>💼 Еңбек жолы</h1>
+          <p class="muted">
+            Жұмыс тәжірибеңіз.
+          </p>
+        </div>
+
+        <button
+          class="btn"
+          data-add="work_experience"
+        >
+          + Қосу
+        </button>
+      </div>
+
+      <div id="experienceList" class="list"></div>
+
+    </section>
+
+    <section class="page" id="students">
+
+      <div class="title-row">
+        <div>
+          <h1>👨‍🎓 Оқушылар жетістіктері</h1>
+          <p class="muted">
+            Оқушыларыңыздың жетістіктерін көрсетіңіз.
+          </p>
+        </div>
+
+        <button
+          class="btn"
+          data-add="student_achievements"
+        >
+          + Қосу
+        </button>
+      </div>
+
+      <div id="studentsList" class="list"></div>
+
+    </section>
+
+    <section class="page" id="works">
+
+      <div class="title-row">
+        <div>
+          <h1>✍️ Авторлық жұмыстар</h1>
+          <p class="muted">
+            Авторлық жобалар мен еңбектер.
+          </p>
+        </div>
+
+        <button
+          class="btn"
+          data-add="author_works"
+        >
+          + Қосу
+        </button>
+      </div>
+
+      <div id="worksList" class="list"></div>
+
+    </section>
+
+    <section class="page" id="portfolio">
+
+      <div class="title-row">
+
+        <div>
+          <h1>🌐 Менің портфолиом</h1>
+
+          <p class="muted">
+            Мұғалімдер мен жұмыс берушілер көретін public бет.
+          </p>
+        </div>
+
+        <button
+          class="btn green"
+          id="publishBtn"
+        >
+          Жариялау
+        </button>
+
+      </div>
+
+      <div id="ownPortfolio" class="portfolio"></div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<div id="modal" class="modal">
+
+  <div class="modal-box">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+
+      <h2 id="modalTitle" style="margin:0">
+        Қосу
+      </h2>
+
+      <button
+        class="btn secondary"
+        id="modalClose"
+      >
+        ✕
+      </button>
+
     </div>
-    <div class="card" style="margin-top:16px">
-      <div class="section-head"><h3>Жылдам әрекеттер</h3></div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button class="btn" data-act="add" data-ent="materials">+ Материал қосу</button>
-        <button class="btn secondary" data-act="add" data-ent="certificates">+ Сертификат қосу</button>
-        <button class="btn secondary" data-act="add" data-ent="achievements">+ Жетістік қосу</button>
-        <button class="btn green" data-act="publish">🌐 Жариялау</button>
-      </div>
-    </div>
-  </section>
 
-  <section class="page" id="profile">
-    <div class="title-row"><div><h1>Менің профилім</h1><p>Public портфолиода көрсетілетін кәсіби ақпарат.</p></div><button class="btn" id="saveProfileBtn" data-act="save-profile">Сақтау</button></div>
-    <div class="card form"><div class="form-grid">
-      <div class="avatar-edit">
-        <div id="avatarBox" class="avatar">M</div>
-        <div class="field"><label for="avatarInput">Фото</label><input id="avatarInput" type="file" accept=".jpg,.jpeg,.png,.webp"><span class="hint">JPG, PNG немесе WEBP, 5 MB дейін. «Сақтау» басқанда жүктеледі.</span></div>
-      </div>
-      <div class="field"><label for="fullName">Аты-жөні *</label><input id="fullName" autocomplete="name"></div>
-      <div class="field"><label for="profession">Мамандығы</label><input id="profession" placeholder="Мысалы: Бастауыш сынып мұғалімі"></div>
-      <div class="field"><label for="subject">Пәні</label><input id="subject"></div>
-      <div class="field"><label for="school">Мектебі / ұйымы</label><input id="school"></div>
-      <div class="field"><label for="city">Қала</label><input id="city"></div>
-      <div class="field"><label for="experienceYears">Педагогикалық тәжірибесі (жыл)</label><input id="experienceYears" type="number" min="0" max="70"></div>
-      <div class="field full"><label for="bio">Өзі туралы</label><textarea id="bio"></textarea></div>
-      <div class="field full"><label for="motto">Кәсіби ұстаным</label><input id="motto"></div>
-      <div class="field full"><label for="quote">Цитата (public бетте көрсетіледі)</label><input id="quote"></div>
-      <div class="field"><label for="email">Байланыс email (жеке, public бетте көрсетілмейді)</label><input id="email" type="email"></div>
-      <div class="field"><label for="phone">Телефон (жеке, public бетте көрсетілмейді)</label><input id="phone" type="tel"></div>
-      <div class="field"><label for="instagram">Instagram</label><input id="instagram" placeholder="@username"></div>
-      <div class="field"><label for="telegram">Telegram</label><input id="telegram" placeholder="@username"></div>
-    </div></div>
-  </section>
+    <div id="modalBody"></div>
 
-  <section class="page" id="achievements"><div class="title-row"><div><h1>🏆 Жетістіктерім</h1><p>Кәсіби марапаттар мен нәтижелер.</p></div><button class="btn" data-act="add" data-ent="achievements">+ Жетістік қосу</button></div><div class="list" id="achievementList"></div></section>
-  <section class="page" id="certificates"><div class="title-row"><div><h1>📜 Сертификаттар</h1><p>Сертификаттар мен дипломдарды бір жерден басқарыңыз.</p></div><button class="btn" data-act="add" data-ent="certificates">+ Сертификат қосу</button></div><div class="list" id="certificateList"></div></section>
-  <section class="page" id="materials"><div class="title-row"><div><h1>📚 Оқу материалдары</h1><p>ҚМЖ, презентация, тест және басқа файлдар.</p></div><button class="btn" data-act="add" data-ent="materials">+ Материал қосу</button></div><div class="card"><div class="materials" id="allMaterials"></div></div></section>
-  <section class="page" id="projects"><div class="title-row"><div><h1>✍️ Авторлық жұмыстар</h1><p>Авторлық бағдарламалар, жобалар және әдістемелік әзірлемелер.</p></div><button class="btn" data-act="add" data-ent="author_works">+ Жұмыс қосу</button></div><div class="list" id="projectList"></div></section>
-  <section class="page" id="students"><div class="title-row"><div><h1>🎓 Оқушылар жетістігі</h1><p>Оқушыларыңыздың байқау, олимпиада және жоба нәтижелері.</p></div><button class="btn" data-act="add" data-ent="student_achievements">+ Қосу</button></div><div class="list" id="studentList"></div></section>
-  <section class="page" id="experience"><div class="title-row"><div><h1>💼 Еңбек жолым</h1><p>Кәсіби тәжірибеңіздің timeline-н жасаңыз.</p></div><button class="btn" data-act="add" data-ent="work_experience">+ Қосу</button></div><div class="list" id="experienceList"></div></section>
-  <section class="page" id="education"><div class="title-row"><div><h1>🎓 Білімім</h1><p>Жоғары және қосымша білім туралы ақпарат.</p></div><button class="btn" data-act="add" data-ent="education">+ Қосу</button></div><div class="list" id="educationList"></div></section>
+  </div>
 
-  <section class="page" id="portfolio">
-    <div class="title-row"><div><h1>🌐 Менің портфолиом</h1><p>Мұғалімдер мен жұмыс берушілер көретін public бет.</p></div><button class="btn green" data-act="publish">Жариялау</button></div>
-    <div class="portfolio" id="ownPortfolio"></div>
-  </section>
+</div>
 
-  <section class="page" id="settings">
-    <div class="title-row"><div><h1>⚙️ Баптаулар</h1><p>Аккаунт және портфолио параметрлері.</p></div><button class="btn" id="saveSettingsBtn" data-act="save-settings">Сақтау</button></div>
-    <div class="card form"><div class="form-grid">
-      <div class="field"><label for="accountEmail">Аккаунт</label><input id="accountEmail" readonly></div>
-      <div class="field"><label>&nbsp;</label><button class="btn secondary" data-act="logout" type="button">Шығу</button></div>
-      <div class="field full"><label for="slugInput">Public сілтеме (slug)</label><input id="slugInput" placeholder="nazerke-myrzahankyzy" autocomplete="off"><span class="hint" id="publicUrl"></span></div>
-      <div class="field full"><label for="publishSelect">Портфолио мәртебесі</label><select id="publishSelect"><option value="1">Жарияланған</option><option value="0">Жасырын</option></select></div>
-    </div></div>
-  </section>
-</main></div>
+<div id="toastContainer"></div>
 
-<!-- ============ PUBLIC VIEW ============ -->
-<div id="publicView"><div class="portfolio" id="publicBody"></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- ============ MODAL / TOAST ============ -->
-<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="modal-box"><button class="close" data-act="close-modal" aria-label="Жабу">×</button><h2 id="modalTitle"></h2><div id="modalBody"></div></div></div>
-<div class="toast" id="toast" role="status"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-(function () {
-'use strict';
 
-/* ================= CONFIG ================= */
-var SUPABASE_URL = 'https://jnihbclfiluwckpyyuim.supabase.co'; // verify against Supabase -> Project Settings -> API
-var SUPABASE_KEY = 'sb_publishable_8vAyrBjpmgbQshQErlk_Uw_Gogw6cJA';          // publishable (anon) key ONLY. Never a secret/service_role key.
+var SUPABASE_URL =
+  'https://jnihbclfiuwckpyyuim.supabase.co';
+
+var SUPABASE_KEY =
+  'sb_publishable_8vAyrBjpmgbQshQErlk_Uw_Gogw6cJA';
+
 var BUCKET = 'portfolio';
+
 var MAX_FILE = 20 * 1024 * 1024;
 
-/* ================= HELPERS ================= */
-var $ = function (id) { return document.getElementById(id); };
-function esc(s) {
-  return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
-    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-  });
-}
-var TR = { 'а':'a','ә':'a','б':'b','в':'v','г':'g','ғ':'g','д':'d','е':'e','ё':'e','ж':'zh','з':'z','и':'i','й':'i','к':'k','қ':'k','л':'l','м':'m','н':'n','ң':'n','о':'o','ө':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ұ':'u','ү':'u','ф':'f','х':'h','һ':'h','ц':'ts','ч':'ch','ш':'sh','щ':'sh','ъ':'','ы':'y','і':'i','ь':'','э':'e','ю':'yu','я':'ya' };
-function slugify(s) {
-  var out = String(s || '').toLowerCase().split('').map(function (ch) { return TR.hasOwnProperty(ch) ? TR[ch] : ch; }).join('');
-  return out.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-}
-var SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-function validEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
-function uuid() {
-  if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
-  return Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
-}
-function rand4() { return Math.random().toString(36).slice(2, 6); }
-function iso() { return new Date().toISOString(); }
-function fmtDate(d) { return d ? String(d).slice(0, 10).split('-').reverse().join('.') : ''; }
-function initials(name) {
-  var p = String(name || '').trim().split(/\s+/).filter(Boolean);
-  return ((p[0] || 'M')[0] + (p[1] ? p[1][0] : '')).toUpperCase();
-}
-function publicUrl(slug) { return location.origin + '/p/' + slug; }
-
-var toastTimer = null;
-function toast(msg, isErr) {
-  var t = $('toast');
-  t.textContent = msg;
-  t.className = 'toast' + (isErr ? ' err' : '');
-  t.style.display = 'block';
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(function () { t.style.display = 'none'; }, isErr ? 4500 : 2400);
-}
-function dbErr(e) {
-  var m = (e && e.message) || String(e), c = e && e.code;
-  if (c === '42P01' || c === 'PGRST205' || /schema cache|relation .* does not exist/i.test(m)) return 'Дерекқор кестесі табылмады: supabase_migration.sql әлі іске қосылмаған болуы мүмкін.';
-  if (/Bucket not found/i.test(m)) return 'Storage bucket "' + BUCKET + '" жоқ: supabase_migration.sql іске қосылмаған.';
-  if (c === '42501' || /row-level security|permission denied|not authorized/i.test(m)) return 'Рұқсат жоқ: RLS policy жетіспейді немесе сессия аяқталған. Қайта кіріңіз.';
-  if (c === '23505') return 'Бұл мән бұрын қолданылған (қайталану).';
-  if (/Failed to fetch|NetworkError|Load failed/i.test(m)) return 'Желі қатесі. Интернетті және Supabase URL-ді тексеріңіз.';
-  if (/Invalid API key|apikey|JWT/i.test(m)) return 'Supabase API key қате немесе жарамсыз.';
-  if (c === 'PGRST116') return 'Жазба табылмады немесе оған рұқсат жоқ.';
-  if (/exceeded the maximum allowed size|too large/i.test(m)) return 'Файл тым үлкен (20 MB дейін).';
-  return 'Қате болды: ' + m;
-}
-function authErr(e) {
-  var m = (e && e.message) || String(e), c = e && (e.code || '');
-  if (/Invalid login credentials/i.test(m)) return 'Email немесе құпиясөз қате.';
-  if (/Email not confirmed/i.test(m) || c === 'email_not_confirmed') return 'Email расталмаған. Поштаңыздағы растау хатын ашыңыз.';
-  if (/already registered|already been registered/i.test(m) || c === 'user_already_exists') return 'Бұл email тіркелген. «Кіру» арқылы кіріңіз.';
-  if (/at least \d+ characters|weak/i.test(m) || c === 'weak_password') return 'Құпиясөз тым әлсіз (кемінде 6 таңба).';
-  if (/rate limit|too many/i.test(m) || c === 'over_email_send_rate_limit') return 'Тым көп әрекет. Біраз күтіп, қайта көріңіз.';
-  if (/Failed to fetch|NetworkError|Load failed/i.test(m)) return 'Желі қатесі. Интернетті және Supabase URL-ді тексеріңіз.';
-  if (/Invalid API key|apikey/i.test(m)) return 'Supabase API key қате.';
-  return 'Қате болды: ' + m;
-}
-
-/* ================= CLIENT ================= */
-var sb = null, configError = '';
-if (!window.supabase || !window.supabase.createClient) configError = 'Supabase кітапханасы жүктелмеді (желіні тексеріңіз).';
-else if (!/^https:\/\/[a-z0-9]+\.supabase\.co$/.test(SUPABASE_URL)) configError = 'SUPABASE_URL форматы қате.';
-else if (!SUPABASE_KEY || /PASTE_YOUR/.test(SUPABASE_KEY)) configError = 'Supabase publishable key орнатылмаған: index.html ішіндегі SUPABASE_KEY мәнін толтырыңыз.';
-else sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-/* ================= STATE ================= */
-var user = null, loadedFor = null;
-var state = { profile: null, data: {}, loaded: {}, avatarSrc: null, pendingAvatar: null };
-var urlCache = {};
-
-function setView(v) { document.body.setAttribute('data-view', v); }
-
-/* ================= ENTITIES ================= */
-var DOC = '.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png';
-var IMG = '.pdf,.jpg,.jpeg,.png';
-var ENT = {
-  achievements: {
-    table: 'achievements', folder: 'achievements', listId: 'achievementList', name: 'Жетістік', icon: '🏆', accept: IMG, order: 'achieved_on',
-    empty: 'Әзірге жетістік қосылмаған. Алғашқы жетістігіңізді қосыңыз.',
-    fields: [
-      { k: 'title', l: 'Атауы', req: true }, { k: 'description', l: 'Сипаттамасы', t: 'textarea' },
-      { k: 'achieved_on', l: 'Күні', t: 'date' }, { k: 'category', l: 'Категориясы' }],
-    view: function (r) { return { t: r.title, s: [r.category, r.description].filter(Boolean).join(' · '), b: r.achieved_on ? String(r.achieved_on).slice(0, 4) : '' }; }
-  },
-  certificates: {
-    table: 'certificates', folder: 'certificates', listId: 'certificateList', name: 'Сертификат', icon: '📜', accept: IMG, order: 'year',
-    empty: 'Әзірге сертификат қосылмаған. Алғашқы сертификатыңызды жүктеңіз.',
-    fields: [{ k: 'title', l: 'Сертификат атауы', req: true }, { k: 'organization', l: 'Ұйым' }, { k: 'year', l: 'Жылы', t: 'number' }],
-    view: function (r) { return { t: r.title, s: r.organization || '', b: r.year ? String(r.year) : '' }; }
-  },
-  materials: {
-    table: 'materials', folder: 'materials', listId: 'allMaterials', name: 'Материал', icon: '📄', accept: DOC, order: 'created_at', card: true,
-    empty: 'Бірінші материалыңызды жүктеңіз.',
-    fields: [
-      { k: 'title', l: 'Атауы', req: true },
-      { k: 'material_type', l: 'Түрі', t: 'select', opts: ['ҚМЖ', 'Презентация', 'Жұмыс парағы', 'Тапсырма', 'Әдістемелік материал', 'Басқа'] },
-      { k: 'subject', l: 'Пәні' }, { k: 'grade', l: 'Сыныбы' }, { k: 'description', l: 'Сипаттамасы', t: 'textarea' }],
-    view: function (r) {
-      var ext = r.file_name ? r.file_name.split('.').pop().toUpperCase().slice(0, 4) : '📄';
-      return { t: r.title, s: [r.material_type, r.subject, r.grade ? r.grade + ' сынып' : '', fmtDate(r.created_at)].filter(Boolean).join(' · '), icon: ext };
-    }
-  },
-  author_works: {
-    table: 'author_works', folder: 'author-works', listId: 'projectList', name: 'Авторлық жұмыс', icon: '✍️', accept: DOC, order: 'year',
-    empty: 'Әзірге авторлық жұмыс қосылмаған.',
-    fields: [
-      { k: 'title', l: 'Атауы', req: true },
-      { k: 'work_type', l: 'Түрі', t: 'select', opts: ['Бағдарлама', 'Мақала', 'Жоба', 'Әдістемелік құрал', 'Зерттеу', 'Басқа'] },
-      { k: 'description', l: 'Сипаттамасы', t: 'textarea' }, { k: 'year', l: 'Жылы', t: 'number' }],
-    view: function (r) { return { t: r.title, s: [r.work_type, r.description].filter(Boolean).join(' · '), b: r.year ? String(r.year) : '' }; }
-  },
-  student_achievements: {
-    table: 'student_achievements', folder: 'student-achievements', listId: 'studentList', name: 'Оқушы жетістігі', icon: '🏅', accept: IMG, order: 'year',
-    empty: 'Әзірге оқушылар жетістігі қосылмаған.',
-    fields: [
-      { k: 'student_name', l: 'Оқушының аты-жөні', req: true }, { k: 'achievement', l: 'Жетістік' },
-      { k: 'competition', l: 'Байқау / олимпиада' }, { k: 'place', l: 'Орын (мысалы: 1 орын)' }, { k: 'year', l: 'Жыл', t: 'number' }],
-    view: function (r) { return { t: r.student_name, s: [r.competition, r.achievement, r.place].filter(Boolean).join(' · '), b: r.year ? String(r.year) : '' }; }
-  },
-  education: {
-    table: 'education', folder: 'education', listId: 'educationList', name: 'Білім', icon: '🎓', accept: null, order: 'graduation_year',
-    empty: 'Әзірге білім туралы жазба жоқ.',
-    fields: [
-      { k: 'institution', l: 'Оқу орны', req: true }, { k: 'specialty', l: 'Мамандығы' },
-      { k: 'graduation_year', l: 'Бітірген жылы', t: 'number' }, { k: 'degree', l: 'Дәрежесі' }],
-    view: function (r) { return { t: r.institution, s: [r.specialty, r.degree].filter(Boolean).join(' · '), b: r.graduation_year ? String(r.graduation_year) : '' }; }
-  },
-  work_experience: {
-    table: 'work_experience', folder: 'work', listId: 'experienceList', name: 'Жұмыс орны', icon: '💼', accept: null, order: 'start_year',
-    empty: 'Әзірге еңбек жолы толтырылмаған.',
-    fields: [
-      { k: 'organization', l: 'Ұйым', req: true }, { k: 'position', l: 'Қызметі' },
-      { k: 'start_year', l: 'Басталған жыл', t: 'number' }, { k: 'end_year', l: 'Аяқталған жыл (қазіргі болса бос қалдырыңыз)', t: 'number' },
-      { k: 'description', l: 'Сипаттамасы', t: 'textarea' }],
-    view: function (r) {
-      var yrs = (r.start_year || '') + ' — ' + (r.end_year || 'қазіргі уақыт');
-      return { t: r.organization, s: [r.position, r.start_year || r.end_year ? yrs : '', r.description].filter(Boolean).join(' · '), b: r.end_year ? '' : 'Қазіргі' };
-    }
+var sb = null;
+var state = {
+  user:null,
+  profile:null,
+  avatarSrc:null,
+  data:{
+    achievements:[],
+    certificates:[],
+    materials:[],
+    education:[],
+    work_experience:[],
+    author_works:[],
+    student_achievements:[]
   }
 };
-var ENT_KEYS = Object.keys(ENT);
 
-/* ================= AUTH UI ================= */
-var mode = 'login';
-function authMsg(t, ok) { var m = $('authMessage'); m.textContent = t || ''; m.className = 'form-msg' + (ok ? ' ok' : ''); }
-function setMode(m) {
-  mode = m;
-  var login = m === 'login';
-  $('loginBtn').style.display = login ? '' : 'none';
-  $('registerBtn').style.display = login ? 'none' : '';
-  $('authPassword2Wrap').style.display = login ? 'none' : '';
-  $('authTitle').textContent = login ? 'Цифрлық портфолиоға кіру' : 'Мұғалім ретінде тіркелу';
-  $('authSub').textContent = login ? 'Email және құпиясөзді енгізіңіз.' : 'Email және құпиясөз ойлап табыңыз.';
-  $('authSwitch').textContent = login ? 'Аккаунтыңыз жоқ па? Тіркелу' : 'Аккаунтыңыз бар ма? Кіру';
-  $('authPassword').setAttribute('autocomplete', login ? 'current-password' : 'new-password');
+var ENT_KEYS = [
+  'achievements',
+  'certificates',
+  'materials',
+  'education',
+  'work_experience',
+  'author_works',
+  'student_achievements'
+];
+
+function $(id){
+  return document.getElementById(id);
+}
+
+function esc(v){
+  return String(v == null ? '' : v)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+function initials(name){
+  return String(name || 'Мұғалім')
+    .trim()
+    .split(/\s+/)
+    .slice(0,2)
+    .map(function(x){
+      return x.charAt(0).toUpperCase();
+    })
+    .join('');
+}
+
+function toast(message,error){
+  var el = document.createElement('div');
+  el.className = 'toast' + (error ? ' err' : '');
+  el.textContent = message;
+  document.body.appendChild(el);
+
+  setTimeout(function(){
+    el.remove();
+  },3000);
+}
+
+function authMsg(message,error){
+  var el = $('authMessage');
+
+  if(!el) return;
+
+  el.textContent = message || '';
+  el.style.color = error ? '#b3261e' : '#23865d';
+}
+
+function dbErr(error){
+  if(!error) return 'Белгісіз қате';
+
+  return error.message ||
+         error.error_description ||
+         error.details ||
+         'Сервер қатесі';
+}
+
+function validEmail(email){
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function configCheck(){
+
+  if(!SUPABASE_URL ||
+     !SUPABASE_KEY ||
+     SUPABASE_KEY.indexOf('PASTE_') === 0){
+
+    return 'Supabase конфигурациясын тексеріңіз.';
+  }
+
+  return '';
+}
+
+var configError = configCheck();
+
+if(!configError){
+
+  sb = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+}
+
+function setAuthMode(mode){
+
+  var login = mode === 'login';
+
+  $('loginBtn').style.display =
+    login ? '' : 'none';
+
+  $('registerBtn').style.display =
+    login ? 'none' : '';
+
+  $('authPassword2Wrap').style.display =
+    login ? 'none' : '';
+
+  $('authTitle').textContent =
+    login
+      ? 'Цифрлық портфолиоға кіру'
+      : 'Мұғалім ретінде тіркелу';
+
+  $('authSub').textContent =
+    login
+      ? 'Email және құпиясөзді енгізіңіз.'
+      : 'Жаңа цифрлық портфолио жасаңыз.';
+
+  $('authSwitch').textContent =
+    login
+      ? 'Аккаунтыңыз жоқ па? Тіркелу'
+      : 'Аккаунтыңыз бар ма? Кіру';
+
+  $('authPassword').setAttribute(
+    'autocomplete',
+    login ? 'current-password' : 'new-password'
+  );
+
   authMsg('');
 }
-function authBusy(b) { $('loginBtn').disabled = b; $('registerBtn').disabled = b; }
 
-async function doLogin() {
-  if (configError) return authMsg(configError);
-  var email = $('authEmail').value.trim(), password = $('authPassword').value;
-  if (!email || !password) return authMsg('Email мен құпиясөзді толтырыңыз.');
-  if (!validEmail(email)) return authMsg('Email форматы қате.');
-  authBusy(true); authMsg('Кіруде...', true);
-  try {
-    var res = await sb.auth.signInWithPassword({ email: email, password: password });
-    if (res.error) { authMsg(authErr(res.error)); return; }
-    authMsg(''); $('authPassword').value = '';
-    await enter(res.data.user);
-  } catch (e) { authMsg(authErr(e)); }
-  finally { authBusy(false); }
-}
-async function doRegister() {
-  if (configError) return authMsg(configError);
-  var email = $('authEmail').value.trim(), p1 = $('authPassword').value, p2 = $('authPassword2').value;
-  if (!email || !p1) return authMsg('Email мен құпиясөзді толтырыңыз.');
-  if (!validEmail(email)) return authMsg('Email форматы қате.');
-  if (p1.length < 6) return authMsg('Құпиясөз кемінде 6 таңба болуы керек.');
-  if (p1 !== p2) return authMsg('Құпиясөздер сәйкес емес.');
-  authBusy(true); authMsg('Тіркелуде...', true);
-  try {
-    var res = await sb.auth.signUp({ email: email, password: p1, options: { emailRedirectTo: location.origin } });
-    if (res.error) { authMsg(authErr(res.error)); return; }
-    if (res.data.user && res.data.user.identities && res.data.user.identities.length === 0) { authMsg('Бұл email тіркелген. «Кіру» арқылы кіріңіз.'); return; }
-    $('authPassword').value = ''; $('authPassword2').value = '';
-    if (res.data.session) { await enter(res.data.session.user); }
-    else { setMode('login'); authMsg('Тіркелу сәтті. Поштаңызға растау хаты жіберілді, сілтемені басып, кейін кіріңіз.', true); }
-  } catch (e) { authMsg(authErr(e)); }
-  finally { authBusy(false); }
-}
-async function doLogout() {
-  closeModal();
-  try { if (sb) await sb.auth.signOut(); } catch (e) { /* ignore */ }
-  leave();
-}
+$('authSwitch').addEventListener(
+  'click',
+  function(){
+    var current =
+      $('loginBtn').style.display !== 'none';
 
-/* ================= SESSION LIFECYCLE ================= */
-async function enter(u) {
-  if (!u) return;
-  user = u;
-  if (loadedFor === u.id) { setView('app'); return; }
-  loadedFor = u.id;
-  resetData();
-  setView('app');
-  showPage('dashboard');
-  try { localStorage.removeItem('teacherPortfolio'); } catch (e) { /* legacy cleanup */ }
-  $('accountEmail').value = u.email || '';
-  refreshAll();
-  await loadAll();
-}
-function leave() {
-  user = null; loadedFor = null;
-  resetData();
-  ['fullName','profession','subject','school','city','experienceYears','bio','motto','quote','email','phone','instagram','telegram','slugInput','searchInput'].forEach(function (id) { $(id).value = ''; });
-  $('avatarInput').value = '';
-  $('authEmail').value = ''; $('authPassword').value = ''; $('authPassword2').value = '';
-  setMode('login');
-  setView('auth');
-}
-function resetData() {
-  state = { profile: null, data: {}, loaded: {}, avatarSrc: null, pendingAvatar: null };
-  urlCache = {};
-  ENT_KEYS.forEach(function (k) { state.data[k] = []; });
-  refreshAll();
-}
+    setAuthMode(
+      current ? 'register' : 'login'
+    );
+  }
+);
 
-/* ================= STORAGE ================= */
-async function signed(path) {
-  if (/^https?:\/\//.test(path)) return path;
-  var c = urlCache[path];
-  if (c && c.exp > Date.now()) return c.url;
-  var r = await sb.storage.from(BUCKET).createSignedUrl(path, 3600);
-  if (r.error) throw r.error;
-  urlCache[path] = { url: r.data.signedUrl, exp: Date.now() + 3300000 };
-  return r.data.signedUrl;
-}
-function extOf(name) { return (String(name).split('.').pop() || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }
-async function uploadFile(folder, file) {
-  var base = slugify(file.name.replace(/\.[^.]+$/, '')).slice(0, 40) || 'file';
-  var path = user.id + '/' + folder + '/' + uuid() + '-' + base + '.' + (extOf(file.name) || 'bin');
-  var r = await sb.storage.from(BUCKET).upload(path, file, { contentType: file.type || undefined, upsert: false });
-  if (r.error) throw r.error;
-  return path;
-}
-async function removeFile(path) {
-  if (!path || /^https?:\/\//.test(path)) return;
-  try { await sb.storage.from(BUCKET).remove([path]); } catch (e) { /* best effort */ }
-}
-function checkFile(file, accept) {
-  var allowed = accept.split(',').map(function (s) { return s.replace('.', ''); });
-  if (allowed.indexOf(extOf(file.name)) < 0) return 'Файл түрі қолдау таппайды. Рұқсат: ' + accept.replace(/\./g, '').split(',').join(', ').toUpperCase();
-  if (file.size > MAX_FILE) return 'Файл тым үлкен (20 MB дейін).';
-  return '';
-}
+async function doLogin(){
 
-/* ================= DATA LOADING ================= */
-async function loadAll() {
-  var errs = [];
-  await Promise.all([loadProfile(errs)].concat(ENT_KEYS.map(function (k) { return loadEntity(k, errs); })));
-  if (errs.length) toast(dbErr(errs[0]), true);
-  refreshAll();
-}
-async function loadProfile(errs) {
-  try {
-    var r = await sb.from('profiles').select('*').eq('id', user.id).maybeSingle();
-    if (r.error) throw r.error;
-    state.profile = r.data;
-    fillProfileForm();
-    state.avatarSrc = null;
-    if (r.data && r.data.avatar_url) { try { state.avatarSrc = await signed(r.data.avatar_url); } catch (e) { /* avatar optional */ } }
-  } catch (e) { errs.push(e); state.profile = null; fillProfileForm(); }
-}
-async function loadEntity(key, errs) {
-  var e = ENT[key];
-  try {
-    var q = sb.from(e.table).select('*').eq('user_id', user.id).order(e.order, { ascending: false, nullsFirst: false });
-    if (e.order !== 'created_at') q = q.order('created_at', { ascending: false });
-    var r = await q;
-    if (r.error) throw r.error;
-    state.data[key] = r.data || [];
-  } catch (err) { if (errs) errs.push(err); state.data[key] = []; }
-  state.loaded[key] = true;
-}
+  if(configError){
+    return authMsg(configError,true);
+  }
 
-/* ================= PROFILE ================= */
-var PF = [['full_name','fullName'],['profession','profession'],['subject','subject'],['organization','school'],['city','city'],['experience_years','experienceYears'],['about','bio'],['professional_motto','motto'],['quote','quote'],['email','email'],['phone','phone'],['instagram','instagram'],['telegram','telegram']];
-function fillProfileForm() {
-  var p = state.profile || {};
-  PF.forEach(function (m) { var v = p[m[0]]; $(m[1]).value = v == null ? '' : v; });
-  if (!p.email && user) $('email').value = user.email || '';
-  $('avatarInput').value = ''; state.pendingAvatar = null;
-  renderAvatarBox();
-}
-function renderAvatarBox(localUrl) {
-  var src = localUrl || state.avatarSrc;
-  $('avatarBox').innerHTML = src ? '<img alt="Фото" src="' + esc(src) + '">' : esc(initials($('fullName').value));
-}
-async function saveProfile(silent) {
-  if (!user) return false;
-  var btn = $('saveProfileBtn');
-  var g = function (id) { return $(id).value.trim(); };
-  var name = g('fullName');
-  if (!name) { toast('Аты-жөнін енгізіңіз.', true); $('fullName').focus(); return false; }
-  var exp = g('experienceYears'), expN = null;
-  if (exp !== '') { expN = parseInt(exp, 10); if (isNaN(expN) || expN < 0 || expN > 70) { toast('Тәжірибе 0–70 жыл аралығында болуы керек.', true); return false; } }
-  var email = g('email'); if (email && !validEmail(email)) { toast('Email форматы қате.', true); return false; }
-  var ig = g('instagram'), tg = g('telegram');
-  if (ig && !/^@?[A-Za-z0-9._]{1,30}$/.test(ig)) { toast('Instagram: тек @username форматы.', true); return false; }
-  if (tg && !/^@?[A-Za-z0-9_]{3,32}$/.test(tg)) { toast('Telegram: тек @username форматы.', true); return false; }
+  var email =
+    $('authEmail').value.trim();
 
-  btn.disabled = true;
-  var newAvatar = null, oldAvatar = state.profile && state.profile.avatar_url;
-  try {
-    var ures = await sb.auth.getUser();
-    if (ures.error || !ures.data.user) throw new Error('Сессия аяқталды. Қайта кіріңіз.');
-    var uid = ures.data.user.id;
-    if (state.pendingAvatar) newAvatar = await uploadFile('avatars', state.pendingAvatar);
+  var password =
+    $('authPassword').value;
 
-    var existingSlug = state.profile && state.profile.slug;
-    var base = existingSlug || slugify(name) || 'teacher';
-    var row = {
-      id: uid, full_name: name, profession: g('profession') || null, subject: g('subject') || null,
-      organization: g('school') || null, city: g('city') || null, experience_years: expN,
-      about: g('bio') || null, professional_motto: g('motto') || null, email: email || null, phone: g('phone') || null,
-      avatar_url: newAvatar || (state.profile && state.profile.avatar_url) || null,
-      quote: g('quote') || null, instagram: ig || null, telegram: tg || null,
-      slug: base, is_published: !!(state.profile && state.profile.is_published), updated_at: iso()
-    };
-    var res = null;
-    for (var i = 0; i < 4; i++) {
-      if (i > 0) row.slug = base + '-' + rand4();
-      res = await sb.from('profiles').upsert(row, { onConflict: 'id' }).select().single();
-      if (!res.error) break;
-      if (res.error.code !== '23505' || existingSlug) break; // retry only for brand-new slug collisions
+  if(!email || !password){
+    return authMsg(
+      'Email мен құпиясөзді толтырыңыз.',
+      true
+    );
+  }
+
+  if(!validEmail(email)){
+    return authMsg(
+      'Email форматы қате.',
+      true
+    );
+  }
+
+  authMsg('Кіруде...',false);
+
+  try{
+
+    var res =
+      await sb.auth.signInWithPassword({
+        email:email,
+        password:password
+      });
+
+    if(res.error){
+      return authMsg(
+        dbErr(res.error),
+        true
+      );
     }
-    if (res.error) throw res.error;
-    state.profile = res.data;
-    if (newAvatar) {
-      state.pendingAvatar = null; $('avatarInput').value = '';
-      state.avatarSrc = await signed(newAvatar);
-      if (oldAvatar && oldAvatar !== newAvatar) removeFile(oldAvatar);
+
+    await boot();
+
+  }catch(error){
+
+    console.error(error);
+
+    authMsg(
+      'Желі қатесі. Интернетті және Supabase URL-ді тексеріңіз.',
+      true
+    );
+
+  }
+}
+
+$('loginBtn').addEventListener(
+  'click',
+  doLogin
+);
+
+async function doRegister(){
+
+  if(configError){
+    return authMsg(configError,true);
+  }
+
+  var email =
+    $('authEmail').value.trim();
+
+  var password =
+    $('authPassword').value;
+
+  var password2 =
+    $('authPassword2').value;
+
+  if(!email || !password || !password2){
+    return authMsg(
+      'Барлық өрісті толтырыңыз.',
+      true
+    );
+  }
+
+  if(!validEmail(email)){
+    return authMsg(
+      'Email форматы қате.',
+      true
+    );
+  }
+
+  if(password.length < 6){
+    return authMsg(
+      'Құпиясөз кемінде 6 таңба болуы керек.',
+      true
+    );
+  }
+
+  if(password !== password2){
+    return authMsg(
+      'Құпиясөздер сәйкес емес.',
+      true
+    );
+  }
+
+  authMsg('Тіркелуде...',false);
+
+  try{
+
+    var res =
+      await sb.auth.signUp({
+        email:email,
+        password:password
+      });
+
+    if(res.error){
+      return authMsg(
+        dbErr(res.error),
+        true
+      );
     }
-    renderAvatarBox(); refreshAll();
-    if (!silent) toast('Профиль сәтті сақталды ✓');
-    return true;
-  } catch (e) {
-    if (newAvatar) removeFile(newAvatar);
-    toast(dbErr(e), true);
-    return false;
-  } finally { btn.disabled = false; }
-}
 
-/* ================= PUBLISH / SETTINGS ================= */
-async function updateProfileFields(fields) {
-  var r = await sb.from('profiles').update(Object.assign({ updated_at: iso() }, fields)).eq('id', user.id).select().single();
-  if (r.error) throw r.error;
-  state.profile = r.data;
-}
-async function publish() {
-  if (!user) return;
-  try {
-    if (!state.profile) { var ok = await saveProfile(true); if (!ok) return; }
-    if (!state.profile.full_name) { toast('Алдымен профильге аты-жөніңізді енгізіңіз.', true); showPage('profile'); return; }
-    await updateProfileFields({ is_published: true });
-    refreshAll();
-    toast('Портфолио жарияланды ✓');
-  } catch (e) { toast(dbErr(e), true); }
-}
-async function saveSettings() {
-  if (!state.profile) { toast('Алдымен «Менің профилім» бөлімін сақтаңыз.', true); return; }
-  var slug = $('slugInput').value.trim().toLowerCase();
-  if (!SLUG_RE.test(slug) || slug.length < 3 || slug.length > 60) { toast('Сілтеме: 3–60 таңба, тек латын әріптері, сандар және дефис.', true); return; }
-  var btn = $('saveSettingsBtn'); btn.disabled = true;
-  try {
-    await updateProfileFields({ slug: slug, is_published: $('publishSelect').value === '1' });
-    refreshAll();
-    toast('Сақталды ✓');
-  } catch (e) { toast(e && e.code === '23505' ? 'Бұл сілтеме бос емес. Басқасын таңдаңыз.' : dbErr(e), true); }
-  finally { btn.disabled = false; }
-}
+    if(!res.data.session){
 
-/* ================= RENDERING ================= */
-function actionsHtml(key, r, own) {
-  var h = '';
-  if (r.file_path) h += '<button class="mini" data-act="open" data-path="' + esc(r.file_path) + '">📎 Ашу</button>';
-  if (own) h += '<button class="mini" data-act="edit" data-ent="' + key + '" data-id="' + esc(r.id) + '">✏️ Өзгерту</button><button class="mini danger" data-act="del" data-ent="' + key + '" data-id="' + esc(r.id) + '">🗑 Өшіру</button>';
-  return h;
-}
-function itemHtml(key, r, own) {
-  var e = ENT[key], v = e.view(r), act = actionsHtml(key, r, own);
-  if (e.card) {
-    return '<div class="material"><div class="fileico">' + esc(v.icon || e.icon) + '</div><div class="row-main"><strong>' + esc(v.t) + '</strong><small>' + esc(v.s) + '</small>' + (act ? '<div class="row-actions">' + act + '</div>' : '') + '</div></div>';
-  }
-  return '<div class="row"><div class="row-left"><div class="fileico">' + esc(v.icon || e.icon) + '</div><div class="row-main"><strong>' + esc(v.t) + '</strong><div class="muted">' + esc(v.s) + '</div></div></div><div class="row-actions">' + (v.b ? '<span class="badge">' + esc(v.b) + '</span>' : '') + act + '</div></div>';
-}
-function listHtml(key, items, own) {
-  return items.map(function (r) { return itemHtml(key, r, own); }).join('');
-}
-function renderEntity(key) {
-  var e = ENT[key], box = $(e.listId), items = state.data[key] || [];
-  if (!state.loaded[key]) { box.innerHTML = '<div class="empty">Жүктелуде...</div>'; return; }
-  box.innerHTML = items.length ? listHtml(key, items, true) : '<div class="empty">' + esc(e.empty) + '</div>';
-}
-function completion() {
-  var p = state.profile || {}, done = 0, total = 0;
-  ['full_name','profession','subject','organization','city','experience_years','about','professional_motto','avatar_url'].forEach(function (k) { total++; if (p[k] != null && p[k] !== '') done++; });
-  ENT_KEYS.forEach(function (k) { total++; if ((state.data[k] || []).length) done++; });
-  return Math.round(done / total * 100);
-}
-function refreshAll() {
-  ENT_KEYS.forEach(renderEntity);
-  var p = state.profile || {}, mats = state.data.materials || [];
-  var first = String(p.full_name || '').trim().split(/\s+/)[0];
-  $('dashboardName').textContent = first || 'Мұғалім';
-  $('statAch').textContent = (state.data.achievements || []).length;
-  $('statCert').textContent = (state.data.certificates || []).length;
-  $('statMat').textContent = mats.length;
-  $('statExp').textContent = (p.experience_years || 0) + ' жыл';
-  $('recentMaterials').innerHTML = mats.length ? listHtml('materials', mats.slice(0, 4), false) : '<div class="empty">' + esc(ENT.materials.empty) + '</div>';
-  var pct = completion();
-  $('completionPct').textContent = pct + '%';
-  $('completionBar').style.width = pct + '%';
-  $('completionText').textContent = pct >= 100 ? 'Портфолиоңыз толық дайын.' : 'Тағы бірнеше бөлімді толтырсаңыз, портфолиоңыз толық дайын болады.';
-  $('publishStatus').textContent = p.is_published ? '🟢 Жарияланған' : '⚪ Жарияланбаған';
-  $('publishSelect').value = p.is_published ? '1' : '0';
-  $('slugInput').value = p.slug || '';
-  $('publicUrl').textContent = p.slug ? 'Сілтеме: ' + publicUrl(p.slug) : 'Сілтеме профильді сақтағаннан кейін жасалады.';
-  if ($('portfolio').classList.contains('active')) renderOwnPortfolio();
-  applySearch();
-}
-function socialLink(kind, v) {
-  if (!v) return '';
-  var h = String(v).replace(/^@/, '');
-  if (kind === 'ig' && /^[A-Za-z0-9._]{1,30}$/.test(h)) return '<a href="https://instagram.com/' + esc(h) + '" target="_blank" rel="noopener">Instagram @' + esc(h) + '</a>';
-  if (kind === 'tg' && /^[A-Za-z0-9_]{3,32}$/.test(h)) return '<a href="https://t.me/' + esc(h) + '" target="_blank" rel="noopener">Telegram @' + esc(h) + '</a>';
-  return '';
-}
-function renderPortfolio(el, m, o) {
-  var p = m.profile || {}, own = !!o.own, years = p.experience_years || 0;
-  var meta = [p.subject, p.organization, p.city].filter(Boolean).map(esc).join(' · ');
-  var sec = function (title, body) { return body ? '<div class="portfolio-section"><h2>' + title + '</h2>' + body + '</div>' : ''; };
-  var rows = function (key) { var a = m[key] || []; return a.length ? '<div class="list">' + listHtml(key, a, false) + '</div>' : ''; };
-  var ach = (m.achievements || []);
-  var achHtml = ach.length ? '<div class="achievement-grid">' + ach.map(function (r) {
-    return '<div class="achievement"><b>' + esc(r.title) + '</b><span class="muted">' + esc([r.category, r.description].filter(Boolean).join(' · ')) + '</span>' + (r.file_path ? '<div class="row-actions" style="margin-top:10px"><button class="mini" data-act="open" data-path="' + esc(r.file_path) + '">📎 Ашу</button></div>' : '') + '</div>';
-  }).join('') + '</div>' : '';
-  var mats = (m.materials || []);
-  var matHtml = mats.length ? '<div class="card"><div class="materials">' + listHtml('materials', mats, false) + '</div></div>' : '';
-  var social = [socialLink('ig', p.instagram), socialLink('tg', p.telegram)].filter(Boolean).join('');
-  var stats = '<div class="grid stats">' + [['Жетістік', ach.length, '🏆'], ['Сертификат', (m.certificates || []).length, '📜'], ['Материал', mats.length, '📚'], ['Тәжірибе', years + ' жыл', '💼']].map(function (s) {
-    return '<div class="card stat"><div><small>' + s[0] + '</small><b>' + esc(s[1]) + '</b></div><div class="ico">' + s[2] + '</div></div>';
-  }).join('') + '</div>';
-  el.innerHTML =
-    (own && !p.is_published ? '<div class="note">Портфолио әзірге жарияланбаған: бұл алдын ала көрініс тек сізге көрінеді. «Жариялау» батырмасын басыңыз.</div>' : '') +
-    '<div class="portfolio-hero"><div><span class="badge">TEACHER DIGITAL PORTFOLIO</span><h1>' + esc(p.full_name || 'Мұғалім') + '</h1>' +
-    (p.profession ? '<h3>' + esc(p.profession) + '</h3>' : '') + (meta ? '<p class="meta-line">' + meta + '</p>' : '') +
-    (p.about ? '<p>' + esc(p.about) + '</p>' : '') +
-    (p.professional_motto ? '<p><b>Кәсіби ұстаным:</b> ' + esc(p.professional_motto) + '</p>' : '') +
-    (p.quote ? '<p><em>«' + esc(p.quote) + '»</em></p>' : '') +
-    '<div class="hero-actions"><button class="btn" data-act="copylink" data-slug="' + esc(p.slug || '') + '">🔗 Сілтемені көшіру</button><button class="btn secondary" data-act="qr" data-slug="' + esc(p.slug || '') + '">▦ QR-код</button></div>' +
-    (social ? '<div class="social">' + social + '</div>' : '') + '</div>' +
-    '<div class="public-photo">' + (m.avatarSrc ? '<img alt="Фото" src="' + esc(m.avatarSrc) + '">' : esc(initials(p.full_name))) + '</div></div>' +
-    sec('Кәсіби көрсеткіштер', stats) + sec('Білім', rows('education')) + sec('Еңбек жолы', rows('work_experience')) +
-    sec('Жетістіктер', achHtml) + sec('Сертификаттар', rows('certificates')) + sec('Авторлық жұмыстар', rows('author_works')) +
-    sec('Оқу материалдары', matHtml) + sec('Оқушылар жетістіктері', rows('student_achievements')) +
-    '<div class="footer">© Teacher Digital Portfolio · Барлық кәсіби жетістік — бір сілтемеде.' + (own ? '' : ' <a href="/" style="color:var(--purple)">Өз портфолиоңызды жасау</a>') + '</div>';
-}
-function renderOwnPortfolio() {
-  var m = { profile: state.profile || { full_name: $('fullName').value.trim() }, avatarSrc: state.avatarSrc };
-  ENT_KEYS.forEach(function (k) { m[k] = state.data[k] || []; });
-  renderPortfolio($('ownPortfolio'), m, { own: true });
-}
-async function loadPublic(slug) {
-  var box = $('publicBody');
-  box.innerHTML = '<div class="empty">Жүктелуде...</div>';
-  if (configError) { box.innerHTML = '<div class="empty">' + esc(configError) + '</div>'; return; }
-  try {
-    var r = await sb.rpc('get_public_portfolio', { p_slug: slug });
-    if (r.error) throw r.error;
-    if (!r.data) { box.innerHTML = '<div class="empty">Портфолио табылмады немесе әлі жарияланбаған.</div>'; document.title = 'Портфолио табылмады'; return; }
-    var m = r.data; m.avatarSrc = null;
-    if (m.profile && m.profile.avatar_url) { try { m.avatarSrc = await signed(m.profile.avatar_url); } catch (e) { /* optional */ } }
-    document.title = (m.profile.full_name || 'Мұғалім') + ' — Цифрлық портфолио';
-    renderPortfolio(box, m, { own: false });
-  } catch (e) { box.innerHTML = '<div class="empty">' + esc(dbErr(e)) + '</div>'; }
-}
+      authMsg(
+        'Тіркелу сәтті өтті. Email-іңізді растаңыз.',
+        false
+      );
 
-/* ================= MODAL / CRUD ================= */
-var ctx = null;
-function openModal(title, html) { $('modalTitle').textContent = title; $('modalBody').innerHTML = html; $('modal').classList.add('show'); }
-function closeModal() { $('modal').classList.remove('show'); $('modalBody').innerHTML = ''; ctx = null; }
-function fieldHtml(f, val) {
-  var id = 'f_' + f.k, v = val == null ? '' : val, inp;
-  if (f.t === 'textarea') inp = '<textarea id="' + id + '">' + esc(v) + '</textarea>';
-  else if (f.t === 'select') inp = '<select id="' + id + '"><option value="">—</option>' + f.opts.map(function (o) { return '<option' + (o === v ? ' selected' : '') + '>' + esc(o) + '</option>'; }).join('') + '</select>';
-  else inp = '<input id="' + id + '" type="' + (f.t || 'text') + '" value="' + esc(v) + '"' + (f.t === 'number' ? ' min="1950" max="2100"' : '') + '>';
-  return '<div class="field"><label for="' + id + '">' + esc(f.l) + (f.req ? ' *' : '') + '</label>' + inp + '</div>';
-}
-function openEntity(key, id) {
-  var e = ENT[key], rec = id ? (state.data[key] || []).filter(function (r) { return r.id === id; })[0] : null;
-  if (id && !rec) return;
-  ctx = { key: key, id: id || null, rec: rec };
-  var html = '<div class="stack">' + e.fields.map(function (f) { return fieldHtml(f, rec ? rec[f.k] : ''); }).join('');
-  if (e.accept) {
-    html += '<div class="field"><label for="f_file">Файл' + (rec && rec.file_name ? ' (қазір: ' + esc(rec.file_name) + ')' : '') + '</label><input type="file" id="f_file" accept="' + e.accept + '"><span class="hint">' + e.accept.replace(/\./g, '').split(',').join(', ').toUpperCase() + ' · 20 MB дейін' + (rec ? ' · жаңа файл таңдасаңыз ескісі ауысады' : '') + '</span></div>';
-  }
-  html += '<div class="form-msg" id="entityError" role="alert"></div><div style="display:flex;gap:10px"><button class="btn" id="entitySave" type="button" data-act="save-entity">Сақтау</button><button class="btn secondary" type="button" data-act="close-modal">Бас тарту</button></div></div>';
-  openModal((rec ? 'Өзгерту: ' : 'Қосу: ') + e.name, html);
-  var first = $('modalBody').querySelector('input,textarea,select'); if (first) first.focus();
-}
-function formErr(t) { var el = $('entityError'); if (el) el.textContent = t || ''; return false; }
-async function saveEntity() {
-  if (!ctx || !user) return;
-  var key = ctx.key, id = ctx.id, e = ENT[key], row = {}, i, f, v;
-  for (i = 0; i < e.fields.length; i++) {
-    f = e.fields[i]; v = $('f_' + f.k).value.trim();
-    if (f.req && !v) return formErr('«' + f.l + '» міндетті өріс.');
-    if (f.t === 'number') {
-      if (v === '') v = null;
-      else { v = parseInt(v, 10); if (isNaN(v) || v < 1950 || v > 2100) return formErr('«' + f.l + '»: 1950–2100 аралығындағы жыл енгізіңіз.'); }
-    } else if (v === '') v = null;
-    row[f.k] = v;
-  }
-  if (key === 'work_experience' && row.start_year && row.end_year && row.end_year < row.start_year) return formErr('Аяқталған жыл басталған жылдан кіші болмауы керек.');
-  var file = e.accept ? $('f_file').files[0] : null;
-  if (file) { var fe = checkFile(file, e.accept); if (fe) return formErr(fe); }
-
-  var btn = $('entitySave'); btn.disabled = true; formErr('');
-  var newPath = null, dbStarted = false, old = ctx.rec;
-  try {
-    if (file) { newPath = await uploadFile(e.folder, file); row.file_path = newPath; row.file_name = file.name; if (key === 'materials') row.file_size = file.size; }
-    row.updated_at = iso();
-    dbStarted = true;
-    var r;
-    if (id) r = await sb.from(e.table).update(row).eq('id', id).eq('user_id', user.id).select().single();
-    else { row.user_id = user.id; r = await sb.from(e.table).insert(row).select().single(); }
-    if (r.error) throw r.error;
-    if (newPath && old && old.file_path) removeFile(old.file_path);
-    await loadEntity(key);
-    refreshAll(); closeModal();
-    toast(file ? 'Жүктелді ✓' : 'Сақталды ✓');
-  } catch (err) {
-    if (newPath && dbStarted) removeFile(newPath); // roll back orphan upload
-    formErr(dbErr(err));
-    var b2 = $('entitySave'); if (b2) b2.disabled = false;
-  }
-}
-async function deleteEntity(key, id) {
-  var rec = (state.data[key] || []).filter(function (r) { return r.id === id; })[0];
-  if (!rec || !window.confirm('Өшіруді растайсыз ба?')) return;
-  try {
-    var r = await sb.from(ENT[key].table).delete().eq('id', id).eq('user_id', user.id);
-    if (r.error) throw r.error;
-    removeFile(rec.file_path);
-    await loadEntity(key); refreshAll();
-    toast('Өшірілді ✓');
-  } catch (e) { toast(dbErr(e), true); }
-}
-
-/* ================= NAV / MISC ================= */
-function showPage(id) {
-  var page = $(id); if (!page) return;
-  document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active'); });
-  page.classList.add('active');
-  document.querySelectorAll('.nav button').forEach(function (b) { b.classList.toggle('active', b.dataset.page === id); });
-  $('sidebar').classList.remove('open');
-  $('searchInput').value = '';
-  if (id === 'portfolio') renderOwnPortfolio();
-  applySearch();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-function applySearch() {
-  var q = $('searchInput').value.trim().toLowerCase();
-  var page = document.querySelector('.page.active'); if (!page) return;
-  page.querySelectorAll('.row, .material').forEach(function (el) { el.style.display = !q || el.textContent.toLowerCase().indexOf(q) >= 0 ? '' : 'none'; });
-}
-async function copyText(t) {
-  try { await navigator.clipboard.writeText(t); return true; }
-  catch (e) {
-    var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select();
-    var ok = false; try { ok = document.execCommand('copy'); } catch (e2) { ok = false; }
-    document.body.removeChild(ta); return ok;
-  }
-}
-async function copyLink(slug) {
-  if (!slug) { toast('Алдымен профильді сақтаңыз: сілтеме жасалады.', true); return; }
-  var ok = await copyText(publicUrl(slug));
-  if (!ok) { toast('Көшіру мүмкін болмады: ' + publicUrl(slug), true); return; }
-  toast(state.profile && state.profile.is_published ? 'Сілтеме көшірілді ✓' : 'Сілтеме көшірілді (портфолио әлі жарияланбаған)');
-}
-function showQR(slug) {
-  if (!slug) { toast('Алдымен профильді сақтаңыз: сілтеме жасалады.', true); return; }
-  var url = publicUrl(slug);
-  openModal('QR-код', '<div class="qrbox" id="qrTarget"></div><p class="muted" style="text-align:center;overflow-wrap:anywhere">' + esc(url) + '</p><div style="display:flex;justify-content:center"><button class="btn secondary" data-act="copylink" data-slug="' + esc(slug) + '">🔗 Сілтемені көшіру</button></div>');
-  if (window.QRCode) { new window.QRCode($('qrTarget'), { text: url, width: 220, height: 220 }); }
-  else $('qrTarget').innerHTML = '<div class="empty">QR кітапханасы жүктелмеді. Сілтемені қолмен көшіріңіз.</div>';
-}
-function openAccount() {
-  openModal('Аккаунт', '<div class="stack"><div class="field"><label>Email</label><input readonly value="' + esc(user ? user.email : '') + '"></div><button class="btn secondary" data-act="logout" type="button">Шығу</button></div>');
-}
-
-/* ================= EVENTS (each registered once) ================= */
-document.addEventListener('click', async function (ev) {
-  var go = ev.target.closest('[data-page]');
-  if (go && user) { showPage(go.dataset.page); return; }
-  var b = ev.target.closest('[data-act]');
-  if (b) {
-    var a = b.dataset.act;
-    if (a === 'menu') $('sidebar').classList.toggle('open');
-    else if (a === 'notify') toast('Хабарламалар әзірге жоқ');
-    else if (a === 'account') openAccount();
-    else if (a === 'logout') await doLogout();
-    else if (a === 'add') openEntity(b.dataset.ent);
-    else if (a === 'edit') openEntity(b.dataset.ent, b.dataset.id);
-    else if (a === 'del') await deleteEntity(b.dataset.ent, b.dataset.id);
-    else if (a === 'save-entity') await saveEntity();
-    else if (a === 'close-modal') closeModal();
-    else if (a === 'save-profile') await saveProfile(false);
-    else if (a === 'save-settings') await saveSettings();
-    else if (a === 'publish') await publish();
-    else if (a === 'copylink') await copyLink(b.dataset.slug);
-    else if (a === 'qr') showQR(b.dataset.slug);
-    else if (a === 'open') {
-      var w = window.open('about:blank', '_blank');
-      try { var url = await signed(b.dataset.path); if (w) w.location.href = url; else window.location.href = url; }
-      catch (e) { if (w) w.close(); toast(dbErr(e), true); }
+      return;
     }
+
+    await boot();
+
+  }catch(error){
+
+    console.error(error);
+
+    authMsg(
+      'Тіркелу кезінде желі қатесі болды.',
+      true
+    );
+
+  }
+}
+
+$('registerBtn').addEventListener(
+  'click',
+  doRegister
+);
+
+async function forgotPassword(){
+
+  if(configError){
+    return authMsg(configError,true);
+  }
+
+  var email =
+    $('authEmail').value.trim();
+
+  if(!email){
+    return authMsg(
+      'Алдымен Email енгізіңіз.',
+      true
+    );
+  }
+
+  if(!validEmail(email)){
+    return authMsg(
+      'Email форматы қате.',
+      true
+    );
+  }
+
+  try{
+
+    var res =
+      await sb.auth.resetPasswordForEmail(
+        email,
+        {
+          redirectTo:
+            window.location.origin +
+            window.location.pathname
+        }
+      );
+
+    if(res.error){
+      return authMsg(
+        dbErr(res.error),
+        true
+      );
+    }
+
+    authMsg(
+      'Құпиясөзді өзгерту сілтемесі email-ге жіберілді.',
+      false
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    authMsg(
+      'Құпиясөзді қалпына келтіру кезінде қате болды.',
+      true
+    );
+
+  }
+}
+
+$('forgotPasswordBtn').addEventListener(
+  'click',
+  forgotPassword
+);
+
+$('logoutBtn').addEventListener(
+  'click',
+  async function(){
+
+    if(sb){
+      await sb.auth.signOut();
+    }
+
+    location.reload();
+
+  }
+);
+
+function showPage(id){
+
+  document.querySelectorAll('.page')
+    .forEach(function(page){
+      page.classList.remove('active');
+    });
+
+  var page = $(id);
+
+  if(page){
+    page.classList.add('active');
+  }
+
+  document.querySelectorAll('.nav button')
+    .forEach(function(btn){
+      btn.classList.toggle(
+        'active',
+        btn.dataset.page === id
+      );
+    });
+
+  var titleMap = {
+    dashboard:'Басты бет',
+    profile:'Профиль',
+    achievements:'Жетістіктер',
+    certificates:'Сертификаттар',
+    materials:'Материалдар',
+    education:'Білім',
+    experience:'Еңбек жолы',
+    students:'Оқушылар жетістіктері',
+    works:'Авторлық жұмыстар',
+    portfolio:'Менің портфолиом'
+  };
+
+  $('pageTitle').textContent =
+    titleMap[id] || 'Teacher Portfolio';
+}
+
+document.querySelectorAll(
+  '.nav button[data-page]'
+).forEach(function(btn){
+
+  btn.addEventListener(
+    'click',
+    function(){
+      showPage(btn.dataset.page);
+    }
+  );
+
+});
+
+document.querySelectorAll(
+  '[data-page-link]'
+).forEach(function(btn){
+
+  btn.addEventListener(
+    'click',
+    function(){
+      showPage(btn.dataset.pageLink);
+    }
+  );
+
+});
+
+async function loadProfile(){
+
+  if(!state.user) return;
+
+  var res =
+    await sb
+      .from('profiles')
+      .select('*')
+      .eq('user_id',state.user.id)
+      .maybeSingle();
+
+  if(res.error){
+    console.error(res.error);
     return;
   }
-  if (ev.target.id === 'modal') closeModal();
-  var sb_ = $('sidebar');
-  if (sb_.classList.contains('open') && !ev.target.closest('#sidebar')) sb_.classList.remove('open');
-});
-document.addEventListener('keydown', function (ev) {
-  if (ev.key === 'Escape' && $('modal').classList.contains('show')) closeModal();
-  if (ev.key === 'Enter' && ev.target && (ev.target.id === 'authEmail' || ev.target.id === 'authPassword' || ev.target.id === 'authPassword2')) {
-    ev.preventDefault(); if (mode === 'login') doLogin(); else doRegister();
-  }
-});
-$('loginBtn').addEventListener('click', doLogin);
-$('registerBtn').addEventListener('click', doRegister);
-$('authSwitch').addEventListener('click', function () { setMode(mode === 'login' ? 'register' : 'login'); });
-$('searchInput').addEventListener('input', applySearch);
-$('fullName').addEventListener('input', function () { if (!state.avatarSrc && !state.pendingAvatar) renderAvatarBox(); });
-$('avatarInput').addEventListener('change', function () {
-  var f = this.files[0]; state.pendingAvatar = null;
-  if (!f) { renderAvatarBox(); return; }
-  if (['jpg', 'jpeg', 'png', 'webp'].indexOf(extOf(f.name)) < 0) { toast('Фото: JPG, PNG немесе WEBP.', true); this.value = ''; return; }
-  if (f.size > 5 * 1024 * 1024) { toast('Фото 5 MB-тан аспауы керек.', true); this.value = ''; return; }
-  state.pendingAvatar = f; renderAvatarBox(URL.createObjectURL(f));
-});
 
-/* ================= BOOT ================= */
-ENT_KEYS.forEach(function (k) { state.data[k] = []; });
-async function boot() {
-  var m = location.pathname.match(/^\/p\/([a-z0-9-]+)\/?$/i);
-  if (m) { setView('public'); await loadPublic(m[1].toLowerCase()); return; }
-  if (configError) { setView('auth'); authMsg(configError); authBusy(true); return; }
-  sb.auth.onAuthStateChange(function (event, session) {
-    var u = session && session.user;
-    // Keep this callback synchronous: never await Supabase calls inside it.
-    setTimeout(function () { if (u) enter(u); else if (user || loadedFor) leave(); }, 0);
-  });
-  try {
-    var s = await sb.auth.getSession();
-    if (s.data && s.data.session) await enter(s.data.session.user); else setView('auth');
-  } catch (e) { setView('auth'); authMsg(authErr(e)); }
+  state.profile =
+    res.data || {
+      user_id:state.user.id,
+      full_name:'',
+      slug:'',
+      profession:'',
+      subject:'',
+      organization:'',
+      city:'',
+      experience_years:0,
+      about:'',
+      professional_motto:'',
+      quote:'',
+      instagram:'',
+      telegram:'',
+      is_published:false
+    };
+
+  fillProfile();
 }
-setMode('login');
+
+function fillProfile(){
+
+  var p = state.profile || {};
+
+  $('fullName').value =
+    p.full_name || '';
+
+  $('profession').value =
+    p.profession || '';
+
+  $('subject').value =
+    p.subject || '';
+
+  $('organization').value =
+    p.organization || '';
+
+  $('city').value =
+    p.city || '';
+
+  $('experienceYears').value =
+    p.experience_years || 0;
+
+  $('about').value =
+    p.about || '';
+
+  $('professionalMotto').value =
+    p.professional_motto || '';
+
+  $('instagram').value =
+    p.instagram || '';
+
+  $('telegram').value =
+    p.telegram || '';
+
+  $('slug').value =
+    p.slug || '';
+
+  $('quote').value =
+    p.quote || '';
+
+  $('dashboardName').textContent =
+    p.full_name || 'Мұғалім';
+
+  $('dashboardProfession').textContent =
+    p.profession || 'Профиль толтырылмаған';
+
+  $('sidebarUser').textContent =
+    state.user
+      ? state.user.email
+      : '—';
+
+  $('dashboardAvatar').textContent =
+    initials(p.full_name);
+
+  var published =
+    !!p.is_published;
+
+  $('publishStatus').textContent =
+    published
+      ? 'Портфолио жарияланған ✓'
+      : 'Портфолио әзірге жарияланбаған';
+
+  $('publishStatus').style.color =
+    published ? '#23865d' : '';
+
+}
+
+async function saveProfile(){
+
+  if(!state.user) return;
+
+  var data = {
+
+    user_id:state.user.id,
+
+    full_name:
+      $('fullName').value.trim(),
+
+    profession:
+      $('profession').value.trim(),
+
+    subject:
+      $('subject').value.trim(),
+
+    organization:
+      $('organization').value.trim(),
+
+    city:
+      $('city').value.trim(),
+
+    experience_years:
+      Number($('experienceYears').value || 0),
+
+    about:
+      $('about').value.trim(),
+
+    professional_motto:
+      $('professionalMotto').value.trim(),
+
+    instagram:
+      $('instagram').value.trim(),
+
+    telegram:
+      $('telegram').value.trim(),
+
+    slug:
+      $('slug').value.trim(),
+
+    quote:
+      $('quote').value.trim(),
+
+    updated_at:
+      new Date().toISOString()
+
+  };
+
+  if(!data.slug){
+
+    data.slug =
+      (data.full_name || 'teacher')
+        .toLowerCase()
+        .replace(/[^a-z0-9а-яё]+/gi,'-')
+        .replace(/^-|-$/g,'') ||
+      'teacher';
+
+  }
+
+  var res =
+    await sb
+      .from('profiles')
+      .upsert(
+        data,
+        {onConflict:'user_id'}
+      )
+      .select()
+      .single();
+
+  if(res.error){
+
+    toast(
+      dbErr(res.error),
+      true
+    );
+
+    return;
+  }
+
+  state.profile =
+    res.data;
+
+  fillProfile();
+
+  toast(
+    'Профиль сақталды ✓'
+  );
+
+}
+
+$('saveProfileBtn').addEventListener(
+  'click',
+  saveProfile
+);
+
+async function loadData(){
+
+  if(!state.user) return;
+
+  for(
+    var i=0;
+    i<ENT_KEYS.length;
+    i++
+  ){
+
+    var key =
+      ENT_KEYS[i];
+
+    var res =
+      await sb
+        .from(key)
+        .select('*')
+        .eq('user_id',state.user.id)
+        .order(
+          'created_at',
+          {ascending:false}
+        );
+
+    if(res.error){
+
+      console.error(
+        key,
+        res.error
+      );
+
+      state.data[key] = [];
+
+    }else{
+
+      state.data[key] =
+        res.data || [];
+
+    }
+
+  }
+
+  renderAllLists();
+  updateStats();
+  renderOwnPortfolio();
+
+}
+
+function updateStats(){
+
+  $('statAchievements').textContent =
+    state.data.achievements.length;
+
+  $('statCertificates').textContent =
+    state.data.certificates.length;
+
+  $('statMaterials').textContent =
+    state.data.materials.length;
+
+  $('statExperience').textContent =
+    state.data.work_experience.length;
+
+}
+
+var listConfigs = {
+
+  achievements:{
+    container:'achievementsList',
+    title:'Жетістік',
+    fields:[
+      ['title','Атауы'],
+      ['category','Санаты'],
+      ['description','Сипаттамасы']
+    ]
+  },
+
+  certificates:{
+    container:'certificatesList',
+    title:'Сертификат',
+    fields:[
+      ['title','Атауы'],
+      ['organization','Ұйым'],
+      ['date','Күні']
+    ]
+  },
+
+  materials:{
+    container:'materialsList',
+    title:'Оқу материалы',
+    fields:[
+      ['title','Атауы'],
+      ['description','Сипаттамасы'],
+      ['url','Сілтеме']
+    ]
+  },
+
+  education:{
+    container:'educationList',
+    title:'Білім туралы жазба',
+    fields:[
+      ['institution','Оқу орны'],
+      ['degree','Дәрежесі'],
+      ['specialty','Мамандығы'],
+      ['year','Жыл']
+    ]
+  },
+
+  work_experience:{
+    container:'experienceList',
+    title:'Жұмыс орны',
+    fields:[
+      ['organization','Мекеме'],
+      ['position','Лауазым'],
+      ['start_date','Басталған жылы'],
+      ['end_date','Аяқталған жылы']
+    ]
+  },
+
+  student_achievements:{
+    container:'studentsList',
+    title:'Оқушы жетістігі',
+    fields:[
+      ['student_name','Оқушы'],
+      ['title','Жетістік'],
+      ['description','Сипаттамасы']
+    ]
+  },
+
+  author_works:{
+    container:'worksList',
+    title:'Авторлық жұмыс',
+    fields:[
+      ['title','Атауы'],
+      ['type','Түрі'],
+      ['description','Сипаттамасы'],
+      ['url','Сілтеме']
+    ]
+  }
+
+};
+
+function renderAllLists(){
+
+  Object.keys(listConfigs)
+    .forEach(renderList);
+
+}
+
+function renderList(key){
+
+  var cfg =
+    listConfigs[key];
+
+  var container =
+    $(cfg.container);
+
+  if(!container) return;
+
+  var rows =
+    state.data[key] || [];
+
+  if(!rows.length){
+
+    container.innerHTML =
+      '<div class="empty">' +
+      'Әзірге мәлімет жоқ. «+ Қосу» батырмасын басыңыз.' +
+      '</div>';
+
+    return;
+
+  }
+
+  container.innerHTML =
+    rows.map(function(row){
+
+      var title =
+        row.title ||
+        row.organization ||
+        row.institution ||
+        row.student_name ||
+        'Жазба';
+
+      var meta =
+        cfg.fields
+          .map(function(f){
+            return row[f[0]];
+          })
+          .filter(Boolean)
+          .slice(1,3)
+          .map(esc)
+          .join(' · ');
+
+      return `
+        <div class="row">
+
+          <div class="row-left">
+
+            <div class="fileico">
+              📄
+            </div>
+
+            <div>
+
+              <strong>${esc(title)}</strong>
+
+              <div class="muted">
+                ${meta || cfg.title}
+              </div>
+
+            </div>
+
+          </div>
+
+          <div style="display:flex;gap:7px">
+
+            <button
+              class="btn secondary"
+              data-edit="${esc(key)}"
+              data-id="${esc(row.id)}"
+            >
+              Өзгерту
+            </button>
+
+            <button
+              class="btn"
+              style="background:#b3261e"
+              data-delete="${esc(key)}"
+              data-id="${esc(row.id)}"
+            >
+              Өшіру
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join('');
+
+}
+
+function fieldHtml(
+  field,
+  value
+){
+
+  var id =
+    'f_' + field[0];
+
+  var val =
+    value == null
+      ? ''
+      : value;
+
+  return `
+    <div class="field">
+
+      <label>${esc(field[1])}</label>
+
+      ${
+        field[0] === 'description'
+          ? `<textarea id="${id}">${esc(val)}</textarea>`
+          : `<input id="${id}" value="${esc(val)}">`
+      }
+
+    </div>
+  `;
+
+}
+
+function openItemModal(
+  key,
+  existing
+){
+
+  var cfg =
+    listConfigs[key];
+
+  var html =
+    '<div class="stack">';
+
+  cfg.fields.forEach(
+    function(field){
+
+      html +=
+        fieldHtml(
+          field,
+          existing
+            ? existing[field[0]]
+            : ''
+        );
+
+    }
+  );
+
+  html += `
+    <button
+      class="btn"
+      id="saveItemBtn"
+      type="button"
+    >
+      Сақтау
+    </button>
+  `;
+
+  html +=
+    '</div>';
+
+  $('modalTitle').textContent =
+    existing
+      ? 'Өзгерту'
+      : cfg.title;
+
+  $('modalBody').innerHTML =
+    html;
+
+  $('modal').classList.add('show');
+
+  $('saveItemBtn')
+    .addEventListener(
+      'click',
+      function(){
+        saveItem(
+          key,
+          existing
+        );
+      }
+    );
+
+}
+
+async function saveItem(
+  key,
+  existing
+){
+
+  var cfg =
+    listConfigs[key];
+
+  var payload = {
+    user_id:
+      state.user.id
+  };
+
+  cfg.fields.forEach(
+    function(field){
+
+      payload[field[0]] =
+        $('f_' + field[0]).value.trim();
+
+    }
+  );
+
+  if(existing){
+
+    var res =
+      await sb
+        .from(key)
+        .update(payload)
+        .eq('id',existing.id)
+        .eq('user_id',state.user.id);
+
+  }else{
+
+    var res =
+      await sb
+        .from(key)
+        .insert(payload);
+
+  }
+
+  if(res.error){
+
+    toast(
+      dbErr(res.error),
+      true
+    );
+
+    return;
+  }
+
+  closeModal();
+
+  await loadData();
+
+  toast(
+    'Сақталды ✓'
+  );
+
+}
+
+async function deleteItem(
+  key,
+  id
+){
+
+  if(!confirm(
+    'Бұл жазбаны өшіру керек пе?'
+  )){
+    return;
+  }
+
+  var res =
+    await sb
+      .from(key)
+      .delete()
+      .eq('id',id)
+      .eq('user_id',state.user.id);
+
+  if(res.error){
+
+    toast(
+      dbErr(res.error),
+      true
+    );
+
+    return;
+  }
+
+  await loadData();
+
+  toast(
+    'Өшірілді'
+  );
+
+}
+
+document.addEventListener(
+  'click',
+  function(event){
+
+    var add =
+      event.target.closest(
+        '[data-add]'
+      );
+
+    if(add){
+
+      openItemModal(
+        add.dataset.add,
+        null
+      );
+
+      return;
+    }
+
+    var edit =
+      event.target.closest(
+        '[data-edit]'
+      );
+
+    if(edit){
+
+      var key =
+        edit.dataset.edit;
+
+      var item =
+        (state.data[key] || [])
+          .find(function(x){
+            return String(x.id) ===
+              String(edit.dataset.id);
+          });
+
+      if(item){
+
+        openItemModal(
+          key,
+          item
+        );
+
+      }
+
+      return;
+    }
+
+    var del =
+      event.target.closest(
+        '[data-delete]'
+      );
+
+    if(del){
+
+      deleteItem(
+        del.dataset.delete,
+        del.dataset.id
+      );
+
+    }
+
+  }
+);
+
+function closeModal(){
+
+  $('modal')
+    .classList
+    .remove('show');
+
+  $('modalBody').innerHTML =
+    '';
+
+}
+
+$('modalClose')
+  .addEventListener(
+    'click',
+    closeModal
+  );
+
+$('modal')
+  .addEventListener(
+    'click',
+    function(e){
+
+      if(e.target === $('modal')){
+        closeModal();
+      }
+
+    }
+  );
+
+function renderOwnPortfolio(){
+
+  var p =
+    state.profile || {};
+
+  var data =
+    state.data || {};
+
+  var stats = `
+    <div class="grid stats">
+
+      <div class="card stat">
+        <div>
+          <small>Жетістік</small>
+          <b>${data.achievements.length}</b>
+        </div>
+        <div class="ico">🏆</div>
+      </div>
+
+      <div class="card stat">
+        <div>
+          <small>Сертификат</small>
+          <b>${data.certificates.length}</b>
+        </div>
+        <div class="ico">📜</div>
+      </div>
+
+      <div class="card stat">
+        <div>
+          <small>Материал</small>
+          <b>${data.materials.length}</b>
+        </div>
+        <div class="ico">📚</div>
+      </div>
+
+      <div class="card stat">
+        <div>
+          <small>Тәжірибе</small>
+          <b>${p.experience_years || 0} жыл</b>
+        </div>
+        <div class="ico">💼</div>
+      </div>
+
+    </div>
+  `;
+
+  function section(
+    title,
+    items,
+    fields
+  ){
+
+    if(!items || !items.length){
+      return '';
+    }
+
+    return `
+      <div class="portfolio-section">
+
+        <h2>${title}</h2>
+
+        <div class="list">
+
+          ${items.map(function(item){
+
+            var title =
+              item.title ||
+              item.organization ||
+              item.institution ||
+              item.student_name ||
+              'Жазба';
+
+            var desc =
+              fields
+                .map(function(k){
+                  return item[k];
+                })
+                .filter(Boolean)
+                .join(' · ');
+
+            return `
+              <div class="row">
+
+                <div>
+
+                  <strong>
+                    ${esc(title)}
+                  </strong>
+
+                  <div class="muted">
+                    ${esc(desc)}
+                  </div>
+
+                </div>
+
+              </div>
+            `;
+
+          }).join('')}
+
+        </div>
+
+      </div>
+    `;
+
+  }
+
+  $('ownPortfolio').innerHTML = `
+
+    ${
+      !p.is_published
+        ? `
+          <div class="note">
+            Портфолио әзірге жарияланбаған:
+            бұл алдын ала көрініс тек сізге көрінеді.
+            «Жариялау» батырмасын басыңыз.
+          </div>
+        `
+        : ''
+    }
+
+    <div class="portfolio-hero">
+
+      <div>
+
+        <span class="badge">
+          TEACHER DIGITAL PORTFOLIO
+        </span>
+
+        <h1>
+          ${esc(p.full_name || 'Мұғалім')}
+        </h1>
+
+        ${
+          p.profession
+            ? `<h3>${esc(p.profession)}</h3>`
+            : ''
+        }
+
+        <p class="meta-line">
+          ${
+            [
+              p.subject,
+              p.organization,
+              p.city
+            ]
+            .filter(Boolean)
+            .map(esc)
+            .join(' · ')
+          }
+        </p>
+
+        ${
+          p.about
+            ? `<p>${esc(p.about)}</p>`
+            : ''
+        }
+
+        ${
+          p.professional_motto
+            ? `
+              <p>
+                <b>Кәсіби ұстаным:</b>
+                ${esc(p.professional_motto)}
+              </p>
+            `
+            : ''
+        }
+
+        ${
+          p.quote
+            ? `<p><em>«${esc(p.quote)}»</em></p>`
+            : ''
+        }
+
+      </div>
+
+      <div class="public-photo">
+
+        ${
+          state.avatarSrc
+            ? `<img src="${esc(state.avatarSrc)}" alt="Фото">`
+            : esc(initials(p.full_name))
+        }
+
+      </div>
+
+    </div>
+
+    <div class="portfolio-section">
+      <h2>Кәсіби көрсеткіштер</h2>
+      ${stats}
+    </div>
+
+    ${section(
+      'Білім',
+      data.education,
+      ['degree','specialty','year']
+    )}
+
+    ${section(
+      'Еңбек жолы',
+      data.work_experience,
+      ['position','start_date','end_date']
+    )}
+
+    ${section(
+      'Жетістіктер',
+      data.achievements,
+      ['category','description']
+    )}
+
+    ${section(
+      'Сертификаттар',
+      data.certificates,
+      ['organization','date']
+    )}
+
+    ${section(
+      'Авторлық жұмыстар',
+      data.author_works,
+      ['type','description']
+    )}
+
+    ${section(
+      'Оқу материалдары',
+      data.materials,
+      ['description']
+    )}
+
+    ${section(
+      'Оқушылар жетістіктері',
+      data.student_achievements,
+      ['description']
+    )}
+
+    <div class="footer" style="margin-top:25px;text-align:center;color:var(--muted)">
+      © Teacher Digital Portfolio ·
+      Барлық кәсіби жетістік — бір сілтемеде.
+    </div>
+
+  `;
+
+}
+
+async function publish(){
+
+  if(!state.user){
+    return;
+  }
+
+  if(!state.profile){
+    await loadProfile();
+  }
+
+  var p =
+    state.profile || {};
+
+  if(!p.full_name){
+
+    showPage('profile');
+
+    toast(
+      'Алдымен профильді толтырыңыз.',
+      true
+    );
+
+    return;
+  }
+
+  var slug =
+    p.slug ||
+    p.full_name
+      .toLowerCase()
+      .replace(/[^a-z0-9а-яё]+/gi,'-')
+      .replace(/^-|-$/g,'') ||
+    'teacher';
+
+  var res =
+    await sb
+      .from('profiles')
+      .update({
+        slug:slug,
+        is_published:true,
+        updated_at:new Date().toISOString()
+      })
+      .eq('user_id',state.user.id)
+      .select()
+      .single();
+
+  if(res.error){
+
+    toast(
+      dbErr(res.error),
+      true
+    );
+
+    return;
+  }
+
+  state.profile =
+    res.data;
+
+  fillProfile();
+  renderOwnPortfolio();
+
+  var url =
+    location.origin +
+    '/p/' +
+    encodeURIComponent(slug);
+
+  toast(
+    'Портфолио жарияланды ✓'
+  );
+
+  if(navigator.clipboard){
+
+    try{
+      await navigator.clipboard.writeText(url);
+    }catch(e){}
+
+  }
+
+}
+
+$('publishBtn')
+  .addEventListener(
+    'click',
+    publish
+  );
+
+$('dashboardPublishBtn')
+  .addEventListener(
+    'click',
+    publish
+  );
+
+$('openPublicBtn')
+  .addEventListener(
+    'click',
+    function(){
+
+      if(
+        state.profile &&
+        state.profile.slug
+      ){
+
+        window.open(
+          '/p/' +
+          encodeURIComponent(
+            state.profile.slug
+          ),
+          '_blank'
+        );
+
+      }else{
+
+        showPage('portfolio');
+
+      }
+
+    }
+  );
+
+async function boot(){
+
+  $('boot').style.display =
+    'grid';
+
+  if(configError){
+
+    $('boot').style.display =
+      'none';
+
+    authMsg(
+      configError,
+      true
+    );
+
+    return;
+
+  }
+
+  try{
+
+    var sessionRes =
+      await sb.auth.getSession();
+
+    if(
+      sessionRes.error ||
+      !sessionRes.data.session
+    ){
+
+      $('authScreen').style.display =
+        'grid';
+
+      $('app').style.display =
+        'none';
+
+      $('boot').style.display =
+        'none';
+
+      return;
+
+    }
+
+    state.user =
+      sessionRes.data.session.user;
+
+    $('authScreen').style.display =
+      'none';
+
+    $('app').style.display =
+      'flex';
+
+    await loadProfile();
+    await loadData();
+
+  }catch(error){
+
+    console.error(error);
+
+    $('authScreen').style.display =
+      'grid';
+
+    $('app').style.display =
+      'none';
+
+    authMsg(
+      'Желі қатесі. Supabase байланысын тексеріңіз.',
+      true
+    );
+
+  }
+
+  $('boot').style.display =
+    'none';
+
+}
+
+sb &&
+sb.auth.onAuthStateChange(
+  function(event,session){
+
+    if(
+      event === 'SIGNED_IN' &&
+      session
+    ){
+
+      state.user =
+        session.user;
+
+    }
+
+  }
+);
+
 boot();
-})();
+
 </script>
+
 </body>
 </html>

@@ -196,7 +196,7 @@ document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showPage(b.dat
  if(el) el.addEventListener('input', updatePublic);
 });
 
-function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open')}
+async function saveProfile(){document.getElementById('sidebar').classList.toggle('open')}
 async function saveProfile(){
  const data = {
     full_name: document.getElementById('fullName')?.value.trim() || '',

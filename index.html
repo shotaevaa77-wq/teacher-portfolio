@@ -197,7 +197,7 @@ document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showPage(b.dat
 });
 
 async function saveProfile(){document.getElementById('sidebar').classList.toggle('open')}
-async function saveProfile(){
+ function saveProfile(){
  const data = {
     full_name: document.getElementById('fullName')?.value.trim() || '',
     profession: document.getElementById('profession')?.value.trim() || '',

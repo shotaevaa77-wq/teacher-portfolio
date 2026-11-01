@@ -306,6 +306,34 @@ function addItem(name){document.getElementById('modalTitle').textContent=name;do
 function publish(){document.getElementById('publishStatus').textContent='🟢 Жарияланған';toast('Портфолио жарияланды ✓')}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2200)}
 renderMaterials(); updatePublic();
-</script>
+document.getElementById('loginBtn').addEventListener('click', async () => {
+  const email = document.getElementById('authEmail').value.trim();
+  const password = document.getElementById('authPassword').value;
+  const message = document.getElementById('authMessage');
+
+  message.textContent = '';
+
+  if (!email || !password) {
+    message.textContent = 'Email және құпия сөзді енгізіңіз';
+    return;
+  }
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    console.error(error);
+    message.textContent = 'Қате: ' + error.message;
+    return;
+  }
+
+  document.getElementById('authScreen').style.display = 'none';
+
+  if (typeof toast === 'function') {
+    toast('Сәтті кірдіңіз ✓');
+  }
+});</script>
 </body>
 </html>

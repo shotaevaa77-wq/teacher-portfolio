@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html>а
 <html lang="kk">
 <head>
 <meta charset="utf-8">
@@ -27,8 +27,16 @@ button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}
 @media(max-width:1000px){.stats{grid-template-columns:1fr 1fr}.dashboard-grid{grid-template-columns:1fr}.sidebar{width:220px}.main{margin-left:220px;width:calc(100% - 220px)}}
 @media(max-width:700px){.sidebar{transform:translateX(-100%);transition:.25s;width:250px}.sidebar.open{transform:translateX(0)}.main{margin-left:0;width:100%;padding:14px}.mobile-menu{display:block}.topbar{padding:0 10px}.search input{width:120px}.stats{grid-template-columns:1fr 1fr}.materials,.form-grid,.achievement-grid{grid-template-columns:1fr}.portfolio-hero{padding:22px;flex-direction:column-reverse;align-items:flex-start}.portfolio-hero h1{font-size:28px}.public-photo{width:110px;height:110px;border-radius:24px}.title-row{gap:10px}.title-row .btn{white-space:nowrap}}
 </style>
-</head>
-<body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head>
+<script>
+const SUPABASE_URL = 'https://jnihbclfiluwckpyyuim.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_8vAyrBjpmgbQshQErlk_Uw_Gogw6cJA';
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+</script><body>
 <div class="app">
 <aside class="sidebar" id="sidebar">
   <div class="logo">TEACHER PORTFOLIO<span>Цифрлық кәсіби кабинет</span></div>
